@@ -27,7 +27,6 @@ export class SearchBikesComponent implements OnInit, AfterViewInit {
       skipWhile((bikes: Bike[]) => !bikes || bikes.length === 0),
       first(),
       map((bikes: Bike[]) => {
-        console.log('here')
         this.dataSource = new MatTableDataSource(bikes);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

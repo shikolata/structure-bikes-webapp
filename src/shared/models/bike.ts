@@ -1,6 +1,6 @@
 import {BasicEntity} from "./common";
 
-export interface Bike extends BasicEntity {
+export interface BikeForm {
   name: string;
   year: string;
   make: string;
@@ -11,3 +11,5 @@ export interface Bike extends BasicEntity {
   quantity: number;
   category: string;
 }
+
+export interface Bike extends BasicEntity, BikeForm {}

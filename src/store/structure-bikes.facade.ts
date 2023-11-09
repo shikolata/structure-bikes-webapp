@@ -27,4 +27,8 @@ export class StructureBikesFacade {
   incrementBikes(): void {
     this.store.dispatch(StrcutureBikesActions.incrementBikes());
   }
+
+  addBike(bike: Bike): void {
+    this.store.dispatch(StrcutureBikesActions.addBike({bike}));
+  }
 }

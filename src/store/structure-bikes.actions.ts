@@ -7,3 +7,6 @@ export const setSelectedBike = createAction('[Bike] Set', props<{ selectedBike: 
 export const incrementBikes = createAction('[Bike] Increment');
 export const incrementBikesSuccess = createAction('[Bike] Increment Success', props<{ bikes: Bike[] }>());
 export const incrementBikesFailure = createAction('[Bike] Increment Failure', props<{ error: any }>());
+export const addBike = createAction('[Bike] Add', props<{ bike: Bike }>());
+export const addBikeSuccess = createAction('[Bike] Add Success');
+export const addBikeFailure = createAction('[Bike] Add Failure', props<{ error: any }>());

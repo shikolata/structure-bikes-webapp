@@ -16,11 +16,18 @@ import {bikesReducer} from "../store/structure-bikes.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {StructureBikesEffects} from "../store/structure-bikes.effects";
 import {HttpClientModule} from "@angular/common/http";
+import { AddBikeComponent } from '../modules/add-bike/add-bike.component';
+import { BikeFormComponent } from '../shared/components/bike-form/bike-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchBikesComponent
+    SearchBikesComponent,
+    AddBikeComponent,
+    BikeFormComponent
   ],
   imports: [
     HttpClientModule,
@@ -37,7 +44,10 @@ import {HttpClientModule} from "@angular/common/http";
       maxAge: 25, // Retains last 25 states
       // logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([StructureBikesEffects])
+    EffectsModule.forRoot([StructureBikesEffects]),
+    ReactiveFormsModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

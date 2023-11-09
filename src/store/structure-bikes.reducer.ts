@@ -1,24 +1,19 @@
-import { createReducer, on } from '@ngrx/store';
-import {
-  incrementBikesFailure,
-  incrementBikesSuccess,
-  setCurrentPage,
-  setSelectedBike
-} from './structure-bikes.actions';
-import {Page} from '../shared/constants';
+import {createReducer, on} from '@ngrx/store';
+import {incrementBikesFailure, incrementBikesSuccess, setCurrentPage, setSelectedBike} from './structure-bikes.actions';
+import {EMPTY_BIKE, Page} from '../shared/constants';
 import {Bike} from "../shared/models/bike";
 
 export interface StructureBikesStoreState {
-  currentPage: Page | undefined;
+  currentPage: Page;
   bikes: Bike[];
-  selectedBike: Bike | undefined;
+  selectedBike: Bike;
   error: any;
 }
 
 export const initialState: StructureBikesStoreState = {
-  currentPage: undefined,
+  currentPage: Page.NONE,
   bikes: [],
-  selectedBike: undefined,
+  selectedBike: EMPTY_BIKE,
   error: undefined
 };
 
