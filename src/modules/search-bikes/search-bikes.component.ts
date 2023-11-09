@@ -7,6 +7,7 @@ import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {Page} from "../../shared/constants";
 import {Observable, skipWhile} from "rxjs";
 import {first, map} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-bikes',
@@ -20,7 +21,13 @@ export class SearchBikesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private structureBikesFacade: StructureBikesFacade) { }
+  constructor(private structureBikesFacade: StructureBikesFacade,
+              private router: Router) { }
+
+  ngOnInit(): void {
+    this.structureBikesFacade.setCurrentPage(Page.SEARCH_BIKES);
+    this.structureBikesFacade.incrementBikes();
+  }
 
   ngAfterViewInit() {
     this.bikes$.pipe(
@@ -34,9 +41,18 @@ export class SearchBikesComponent implements OnInit, AfterViewInit {
     ).subscribe();
   }
 
-  ngOnInit(): void {
-    this.structureBikesFacade.setCurrentPage(Page.SEARCH_BIKES);
-    this.structureBikesFacade.incrementBikes();
+  navigateToBike(bikeId: number): void {
+    this.bikes$.pipe(
+      first(),
+      map((bikes: Bike[]) => {
+        console.log(bikes)
+        const selectedBike: Bike | undefined = bikes.find(bike => bike.id === bikeId);
+        if(!!selectedBike) {
+          this.structureBikesFacade.setSelectedCandidate(selectedBike);
+        }
+      })
+    ).subscribe();
+    this.router.navigate(['/view-bike', { id: bikeId }]);
   }
 
   applyFilter(event: Event) {

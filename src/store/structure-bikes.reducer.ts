@@ -1,5 +1,11 @@
 import {createReducer, on} from '@ngrx/store';
-import {incrementBikesFailure, incrementBikesSuccess, setCurrentPage, setSelectedBike} from './structure-bikes.actions';
+import {
+  incrementBikesFailure,
+  incrementBikesSuccess,
+  setCurrentPage,
+  setSelectedBike, updateSelectedBikeFailure,
+  updateSelectedBikeSuccess
+} from './structure-bikes.actions';
 import {EMPTY_BIKE, Page} from '../shared/constants';
 import {Bike} from "../shared/models/bike";
 
@@ -22,5 +28,7 @@ export const bikesReducer = createReducer(
   on(setCurrentPage, (state, { currentPage }) => ({...state, currentPage})),
   on(setSelectedBike, (state, { selectedBike }) => ({...state, selectedBike})),
   on(incrementBikesSuccess, (state, { bikes }) => ({...state, bikes})),
-  on(incrementBikesFailure, (state, { error }) => ({...state, error}))
+  on(incrementBikesFailure, (state, { error }) => ({...state, error})),
+  on(updateSelectedBikeSuccess, (state, { selectedBike }) => ({...state, selectedBike})),
+  on(updateSelectedBikeFailure, (state, { error }) => ({...state, error}))
 );

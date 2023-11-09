@@ -3,7 +3,8 @@ import {Bike, BikeForm} from "./models/bike";
 export enum Page {
   NONE = 'none',
   SEARCH_BIKES = 'search-bikes',
-  ADD_BIKE = 'add-bike'
+  ADD_BIKE = 'add-bike',
+  VIEW_BIKE = 'view-bike'
 }
 
 export const Languages = {

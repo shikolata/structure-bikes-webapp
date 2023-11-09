@@ -21,13 +21,15 @@ import { BikeFormComponent } from '../shared/components/bike-form/bike-form.comp
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import { ViewBikeComponent } from '../modules/view-bike/view-bike.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBikesComponent,
     AddBikeComponent,
-    BikeFormComponent
+    BikeFormComponent,
+    ViewBikeComponent
   ],
   imports: [
     HttpClientModule,

@@ -28,6 +28,10 @@ export class StructureBikesFacade {
     this.store.dispatch(StrcutureBikesActions.incrementBikes());
   }
 
+  updateSelectedBike(selectedBikeId: number): void {
+    this.store.dispatch(StrcutureBikesActions.updateSelectedBike({selectedBikeId}));
+  }
+
   addBike(bike: Bike): void {
     this.store.dispatch(StrcutureBikesActions.addBike({bike}));
   }

@@ -10,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './bike-form.component.html',
   styleUrls: ['./bike-form.component.scss']
 })
-export class BikeFormComponent implements OnInit {
+export class BikeFormComponent implements OnInit, OnChanges {
   @Input()
   bikeForm: BikeForm;
 
@@ -32,6 +32,12 @@ export class BikeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.setBikeFormGroup(this.bikeForm);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['bikeForm']) {
+      this.setBikeFormGroup(changes['bikeForm'].currentValue);
+    }
   }
 
   onSubmit(): void {
