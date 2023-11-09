@@ -10,6 +10,12 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSortModule} from "@angular/material/sort";
+import { StoreModule } from '@ngrx/store';
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {bikesReducer} from "../store/structure-bikes.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {StructureBikesEffects} from "../store/structure-bikes.effects";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,6 +23,7 @@ import {MatSortModule} from "@angular/material/sort";
     SearchBikesComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -24,7 +31,13 @@ import {MatSortModule} from "@angular/material/sort";
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    StoreModule.forRoot({bikes: bikesReducer}, {}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      // logOnly: environment.production, // Restrict extension to log-only mode
+    }),
+    EffectsModule.forRoot([StructureBikesEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

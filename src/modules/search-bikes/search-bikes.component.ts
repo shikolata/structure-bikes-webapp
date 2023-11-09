@@ -3,6 +3,10 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Bike} from "../../shared/models/bike";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
+import {StructureBikesFacade} from "../../store/structure-bikes.facade";
+import {Page} from "../../shared/constants";
+import {Observable, skipWhile} from "rxjs";
+import {first, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-search-bikes',
@@ -11,31 +15,29 @@ import {MatPaginator} from "@angular/material/paginator";
 })
 export class SearchBikesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['make', 'name', 'year', 'rating'];
-  dataSource: MatTableDataSource<Bike> = new MatTableDataSource();
+  bikes$: Observable<Bike[]> = this.structureBikesFacade.bikes$;
+  dataSource: MatTableDataSource<Bike>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor(private structureBikesFacade: StructureBikesFacade) { }
 
   ngAfterViewInit() {
-    const bikes: Bike[] = [{
-      id: 1,
-      name: "testBikeName",
-      year: "1999",
-      make: "testBikeMake",
-      model: "testBikeModel",
-      description: "testBikeDescription",
-      rating: "testBikeRating",
-      price: "testBikePrice",
-      quantity: 100,
-      category: "testBikeCategory"
-    }]
-    this.dataSource = new MatTableDataSource(bikes)
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.bikes$.pipe(
+      skipWhile((bikes: Bike[]) => !bikes || bikes.length === 0),
+      first(),
+      map((bikes: Bike[]) => {
+        console.log('here')
+        this.dataSource = new MatTableDataSource(bikes);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
+    ).subscribe();
   }
 
   ngOnInit(): void {
+    this.structureBikesFacade.setCurrentPage(Page.SEARCH_BIKES);
+    this.structureBikesFacade.incrementBikes();
   }
 
   applyFilter(event: Event) {
