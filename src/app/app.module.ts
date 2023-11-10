@@ -23,6 +23,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import { ViewBikeComponent } from '../modules/view-bike/view-bike.component';
 import { EditBikeComponent } from '../modules/edit-bike/edit-bike.component';
+import { NavigationComponent } from '../shared/components/navigation/navigation.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import { EditBikeComponent } from '../modules/edit-bike/edit-bike.component';
     AddBikeComponent,
     BikeFormComponent,
     ViewBikeComponent,
-    EditBikeComponent
+    EditBikeComponent,
+    NavigationComponent
   ],
   imports: [
     HttpClientModule,
@@ -51,7 +56,10 @@ import { EditBikeComponent } from '../modules/edit-bike/edit-bike.component';
     EffectsModule.forRoot([StructureBikesEffects]),
     ReactiveFormsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

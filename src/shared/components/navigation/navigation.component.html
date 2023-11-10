@@ -1,0 +1,18 @@
+<div style="display: flex">
+  <mat-toolbar class="centered">
+    <span>{{currentPage$ | async}}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled="{{(currentPage$ | async) === page.SEARCH_BIKES}}" [routerLink]="['/search-bikes']">
+        <mat-icon>search</mat-icon>
+        <span>Search Bikes</span>
+      </button>
+      <button mat-menu-item disabled="{{(currentPage$ | async) === page.ADD_BIKE}}" [routerLink]="['/add-bike']">
+        <mat-icon>person_add</mat-icon>
+        <span>Add Bike</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</div>

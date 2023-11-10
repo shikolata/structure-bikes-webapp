@@ -45,7 +45,6 @@ export class SearchBikesComponent implements OnInit, AfterViewInit {
     this.bikes$.pipe(
       first(),
       map((bikes: Bike[]) => {
-        console.log(bikes)
         const selectedBike: Bike | undefined = bikes.find(bike => bike.id === bikeId);
         if(!!selectedBike) {
           this.structureBikesFacade.setSelectedBike(selectedBike);
