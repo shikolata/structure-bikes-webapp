@@ -13,3 +13,6 @@ export const updateSelectedBikeFailure = createAction('[Bike] Update Failure', p
 export const addBike = createAction('[Bike] Add', props<{ bike: Bike }>());
 export const addBikeSuccess = createAction('[Bike] Add Success');
 export const addBikeFailure = createAction('[Bike] Add Failure', props<{ error: any }>());
+export const editBike = createAction('[Bikes] Edit', props<{ bike: Bike }>());
+export const editBikeSuccess = createAction('[Bikes] Edit Success');
+export const editBikeFailure = createAction('[Bikes] Edit Failure', props<{ error: any }>());

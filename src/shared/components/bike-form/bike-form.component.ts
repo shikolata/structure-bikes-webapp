@@ -20,8 +20,14 @@ export class BikeFormComponent implements OnInit, OnChanges {
   @Input()
   primaryButtonName: string;
 
+  @Input()
+  showSecondaryButton = false;
+
   @Output()
   submission = new EventEmitter();
+
+  @Output()
+  formCancel = new EventEmitter();
 
   currentPage$: Observable<Page> = this.structureBikesFacade.currentPage$;
   page = Page;
@@ -42,6 +48,10 @@ export class BikeFormComponent implements OnInit, OnChanges {
 
   onSubmit(): void {
     this.submission.emit(this.bikeFormGroup);
+  }
+
+  onCancel(): void {
+    this.formCancel.emit();
   }
 
   setBikeFormGroup(bikeForm: BikeForm): void {

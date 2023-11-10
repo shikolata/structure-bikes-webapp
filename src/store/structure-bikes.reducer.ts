@@ -1,5 +1,6 @@
 import {createReducer, on} from '@ngrx/store';
 import {
+  editBikeSuccess,
   incrementBikesFailure,
   incrementBikesSuccess,
   setCurrentPage,
@@ -30,5 +31,6 @@ export const bikesReducer = createReducer(
   on(incrementBikesSuccess, (state, { bikes }) => ({...state, bikes})),
   on(incrementBikesFailure, (state, { error }) => ({...state, error})),
   on(updateSelectedBikeSuccess, (state, { selectedBike }) => ({...state, selectedBike})),
-  on(updateSelectedBikeFailure, (state, { error }) => ({...state, error}))
+  on(updateSelectedBikeFailure, (state, { error }) => ({...state, error})),
+  on(editBikeSuccess, (state) => ({...state, selectedBike: EMPTY_BIKE})),
 );

@@ -1,5 +1,6 @@
 <app-bike-form
   [bikeForm]="viewBikeForm"
   [isFormDisabled]="true"
-  [primaryButtonName]="page.VIEW_BIKE">
+  [primaryButtonName]="page.EDIT_BIKE"
+  (submission)="onSubmit()">
 </app-bike-form>

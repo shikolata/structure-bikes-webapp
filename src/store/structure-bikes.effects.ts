@@ -4,7 +4,7 @@ import {catchError, first, map, switchMap, takeWhile} from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   addBike, addBikeFailure,
-  addBikeSuccess,
+  addBikeSuccess, editBike, editBikeFailure, editBikeSuccess,
   incrementBikes,
   incrementBikesFailure,
   incrementBikesSuccess, updateSelectedBike, updateSelectedBikeFailure, updateSelectedBikeSuccess
@@ -32,7 +32,7 @@ export class StructureBikesEffects {
   updateSelectedBike$ = createEffect(() => this.actions$.pipe(
     ofType(updateSelectedBike),
     switchMap(({  selectedBikeId }) => this.structureBikesFacade.selectedBike$.pipe(
-      takeWhile(selectedCandidate => !selectedCandidate || selectedCandidate.id !== selectedBikeId),
+      takeWhile(selectedBike => !selectedBike || selectedBike.id !== selectedBikeId),
       switchMap(() => {
         return this.bikeService.getBike(selectedBikeId).pipe(
           first(),
@@ -48,10 +48,21 @@ export class StructureBikesEffects {
     ofType(addBike),
     switchMap(({ bike }) => this.bikeService.createBike(bike).pipe(
       map(id => {
-        this.router.navigate(['/view-candidate', { id }]);
+        this.router.navigate(['/view-bike', { id }]);
         return addBikeSuccess();
       }),
       catchError((error) => of(addBikeFailure({ error })))
+    ))
+  ));
+
+  editBikes$ = createEffect(() => this.actions$.pipe(
+    ofType(editBike),
+    switchMap(({ bike }) => this.bikeService.updateBike(bike).pipe(
+      map(() => {
+        this.router.navigate(['/view-bike', { id: bike.id }]);
+        return editBikeSuccess();
+      }),
+      catchError((error) => of(editBikeFailure({ error })))
     ))
   ));
 

@@ -22,6 +22,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import { ViewBikeComponent } from '../modules/view-bike/view-bike.component';
+import { EditBikeComponent } from '../modules/edit-bike/edit-bike.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ViewBikeComponent } from '../modules/view-bike/view-bike.component';
     SearchBikesComponent,
     AddBikeComponent,
     BikeFormComponent,
-    ViewBikeComponent
+    ViewBikeComponent,
+    EditBikeComponent
   ],
   imports: [
     HttpClientModule,

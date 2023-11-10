@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {StructureBikesStoreState} from './structure-bikes.reducer';
 import * as StructureBikesSelectors from './structure-bikes.selectors';
-import * as StrcutureBikesActions from './structure-bikes.actions';
+import * as StructureBikesActions from './structure-bikes.actions';
 import {Bike} from '../shared/models/bike';
 import {Page} from '../shared/constants';
 
@@ -17,22 +17,26 @@ export class StructureBikesFacade {
   constructor(private store: Store<StructureBikesStoreState>) {}
 
   setCurrentPage(currentPage: Page): void {
-    this.store.dispatch(StrcutureBikesActions.setCurrentPage({currentPage}));
+    this.store.dispatch(StructureBikesActions.setCurrentPage({currentPage}));
   }
 
-  setSelectedCandidate(selectedBike: Bike): void {
-    this.store.dispatch(StrcutureBikesActions.setSelectedBike({selectedBike}));
+  setSelectedBike(selectedBike: Bike): void {
+    this.store.dispatch(StructureBikesActions.setSelectedBike({selectedBike}));
   }
 
   incrementBikes(): void {
-    this.store.dispatch(StrcutureBikesActions.incrementBikes());
+    this.store.dispatch(StructureBikesActions.incrementBikes());
   }
 
   updateSelectedBike(selectedBikeId: number): void {
-    this.store.dispatch(StrcutureBikesActions.updateSelectedBike({selectedBikeId}));
+    this.store.dispatch(StructureBikesActions.updateSelectedBike({selectedBikeId}));
   }
 
   addBike(bike: Bike): void {
-    this.store.dispatch(StrcutureBikesActions.addBike({bike}));
+    this.store.dispatch(StructureBikesActions.addBike({bike}));
+  }
+
+  editBike(bike: Bike): void {
+    this.store.dispatch(StructureBikesActions.editBike({bike}));
   }
 }

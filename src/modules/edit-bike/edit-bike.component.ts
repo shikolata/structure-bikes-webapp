@@ -1,18 +1,19 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Bike, BikeForm} from "../../shared/models/bike";
 import {Observable, skipWhile, Subscription} from "rxjs";
-import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {EMPTY_BIKE_FORM, Page} from "../../shared/constants";
+import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {ActivatedRoute, Router} from "@angular/router";
 import {first, map} from "rxjs/operators";
+import {FormGroup} from "@angular/forms";
 
 @Component({
-  selector: 'app-view-bike',
-  templateUrl: './view-bike.component.html',
-  styleUrls: ['./view-bike.component.scss']
+  selector: 'app-edit-bike',
+  templateUrl: './edit-bike.component.html',
+  styleUrls: ['./edit-bike.component.scss']
 })
-export class ViewBikeComponent implements OnInit, OnDestroy {
-  viewBikeForm: BikeForm;
+export class EditBikeComponent implements OnInit, OnDestroy {
+  editBikeForm: BikeForm;
   selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;
   bikeId: string;
   page = Page;
@@ -21,7 +22,7 @@ export class ViewBikeComponent implements OnInit, OnDestroy {
   constructor(private structureBikesFacade: StructureBikesFacade,
               private route: ActivatedRoute,
               private router: Router) {
-    this.viewBikeForm = EMPTY_BIKE_FORM;
+    this.editBikeForm = EMPTY_BIKE_FORM;
   }
 
   ngOnInit(): void {
@@ -32,13 +33,13 @@ export class ViewBikeComponent implements OnInit, OnDestroy {
       skipWhile((selectedBike: Bike) => !selectedBike || selectedBike.id.toString() !== this.bikeId),
       first(),
       map((selectedBike: Bike) => {
-        this.setViewBikeForm(selectedBike);
+        this.setEditBikeForm(selectedBike);
       })
     ).subscribe();
   }
 
-  setViewBikeForm(bike: Bike): void {
-    this.viewBikeForm = {
+  setEditBikeForm(bike: Bike): void {
+    this.editBikeForm = {
       name: bike.name,
       year: bike.year,
       make: bike.make,
@@ -51,8 +52,20 @@ export class ViewBikeComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit(): void {
-    this.router.navigate(['/edit-bike', { id: this.bikeId }]);
+  onSubmit(bikeFormGroup: FormGroup): void {
+    if (bikeFormGroup.invalid) {
+      console.log('form is invalid!');
+      return;
+    }
+    const rawForm = bikeFormGroup.getRawValue();
+    rawForm.id = Number(this.bikeId);
+    const editedBike: Bike = rawForm as Bike;
+
+    this.structureBikesFacade.editBike(editedBike);
+  }
+
+  onCancel(): void {
+    this.router.navigate(['/view-bike', { id: this.bikeId }]);
   }
 
   ngOnDestroy() {

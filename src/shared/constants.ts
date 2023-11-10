@@ -4,7 +4,8 @@ export enum Page {
   NONE = 'none',
   SEARCH_BIKES = 'search-bikes',
   ADD_BIKE = 'add-bike',
-  VIEW_BIKE = 'view-bike'
+  VIEW_BIKE = 'view-bike',
+  EDIT_BIKE = 'edit-bike'
 }
 
 export const Languages = {

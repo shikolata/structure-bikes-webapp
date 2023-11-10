@@ -48,7 +48,7 @@ export class SearchBikesComponent implements OnInit, AfterViewInit {
         console.log(bikes)
         const selectedBike: Bike | undefined = bikes.find(bike => bike.id === bikeId);
         if(!!selectedBike) {
-          this.structureBikesFacade.setSelectedCandidate(selectedBike);
+          this.structureBikesFacade.setSelectedBike(selectedBike);
         }
       })
     ).subscribe();

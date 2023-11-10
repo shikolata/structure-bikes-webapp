@@ -48,5 +48,6 @@
     </div>
 
     <button mat-raised-button color="primary" type="submit">{{ primaryButtonName }}</button>
+    <button mat-raised-button color="secondary" *ngIf="showSecondaryButton" (click)="onCancel()" type="button">Cancel</button>
   </form>
 </mat-card>
