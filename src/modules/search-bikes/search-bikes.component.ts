@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
   templateUrl: './search-bikes.component.html',
   styleUrls: ['./search-bikes.component.scss']
 })
-export class SearchBikesComponent implements OnInit, AfterViewInit {
+export class SearchBikesComponent implements OnInit {
   displayedColumns: string[] = ['make', 'name', 'year', 'rating'];
   bikes$: Observable<Bike[]> = this.structureBikesFacade.bikes$;
   dataSource: MatTableDataSource<Bike>;
@@ -27,9 +27,7 @@ export class SearchBikesComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.SEARCH_BIKES);
     this.structureBikesFacade.incrementBikes();
-  }
 
-  ngAfterViewInit() {
     this.bikes$.pipe(
       skipWhile((bikes: Bike[]) => !bikes || bikes.length === 0),
       first(),
