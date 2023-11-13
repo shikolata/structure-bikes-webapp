@@ -16,3 +16,6 @@ export const addBikeFailure = createAction('[Bike] Add Failure', props<{ error: 
 export const editBike = createAction('[Bikes] Edit', props<{ bike: Bike }>());
 export const editBikeSuccess = createAction('[Bikes] Edit Success');
 export const editBikeFailure = createAction('[Bikes] Edit Failure', props<{ error: any }>());
+export const deleteBike = createAction('[Bike] Delete', props<{ bikeId: number }>());
+export const deleteBikeSuccess = createAction('[Bike] Delete Success');
+export const deleteBikeFailure = createAction('[Bike] Delete Failure', props<{ error: any }>());

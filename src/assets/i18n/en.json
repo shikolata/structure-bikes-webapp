@@ -2,7 +2,7 @@
   "language-selector": {
     "select-language": "Select Language"
   },
-  "search-page": {
+  "search-bikes": {
     "filter": {
       "title": "Filter",
       "no-results": "No data matching the filter"
@@ -12,7 +12,9 @@
       "name": "Name",
       "year": "Year",
       "rating": "Rating"
-    }
+    },
+    "delete": "Are you sure you'd like to delete this Bike?",
+    "no-bikes": "There are currently no Bikes! Please add Bikes to view see them here"
   },
   "navigation": {
     "search-bikes": "Search Bikes",
@@ -44,5 +46,9 @@
       "save-bike": "Save Bike",
       "edit-gallery": "Edit Gallery"
     }
+  },
+  "confirm-dialog": {
+    "yes": "Yes",
+    "no": "No"
   }
 }

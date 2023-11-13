@@ -55,7 +55,7 @@ export class BikeService {
       .pipe(retry(1), catchError(this.handleError));
   }
   // HttpClient API delete() method => Delete Bike
-  deleteBike(id: any) {
+  deleteBike(id: number) {
     return this.http
       .delete<Bike>(`${this.apiURL}/bikes/${id}`, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));

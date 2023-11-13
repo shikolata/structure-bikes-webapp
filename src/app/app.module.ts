@@ -34,6 +34,8 @@ import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {LanguageSelectorComponent} from '../shared/components/language-selector/language-selector.component';
 import {MatSelectModule} from "@angular/material/select";
+import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -51,7 +53,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NavigationComponent,
     GalleryComponent,
     EditGalleryComponent,
-    LanguageSelectorComponent
+    LanguageSelectorComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -75,6 +78,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
+    MatDialogModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

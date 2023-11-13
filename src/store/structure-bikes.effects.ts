@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {catchError, first, map, switchMap, takeWhile} from 'rxjs/operators';
+import {catchError, exhaustMap, first, map, switchMap, takeWhile} from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   addBike, addBikeFailure,
-  addBikeSuccess, editBike, editBikeFailure, editBikeSuccess,
+  addBikeSuccess, deleteBike, deleteBikeFailure, deleteBikeSuccess, editBike, editBikeFailure, editBikeSuccess,
   incrementBikes,
   incrementBikesFailure,
   incrementBikesSuccess, updateSelectedBike, updateSelectedBikeFailure, updateSelectedBikeSuccess
@@ -65,6 +65,21 @@ export class StructureBikesEffects {
       catchError((error) => of(editBikeFailure({ error })))
     ))
   ));
+
+  deleteBike$ = createEffect(() => this.actions$.pipe(
+    ofType(deleteBike),
+    switchMap(({ bikeId }) => this.bikeService.deleteBike(bikeId).pipe(
+      map(id => {
+        return deleteBikeSuccess();
+      }),
+      catchError((error) => of(deleteBikeFailure({ error })))
+    ))
+  ));
+
+  deleteBikeSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(deleteBikeSuccess),
+    map(() => incrementBikes())
+  ))
 
   constructor(
     private actions$: Actions,

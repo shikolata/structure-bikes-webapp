@@ -39,4 +39,8 @@ export class StructureBikesFacade {
   editBike(bike: Bike): void {
     this.store.dispatch(StructureBikesActions.editBike({bike}));
   }
+
+  deleteBike(bikeId: number): void {
+    this.store.dispatch(StructureBikesActions.deleteBike({bikeId}));
+  }
 }

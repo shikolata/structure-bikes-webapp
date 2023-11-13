@@ -1,36 +1,38 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Bike} from "../../shared/models/bike";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {Page} from "../../shared/constants";
-import {Observable, skipWhile} from "rxjs";
+import {Observable, skipWhile, Subscription} from "rxjs";
 import {first, map} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {DialogService} from "../../shared/services/dialog.service";
 
 @Component({
   selector: 'app-search-bikes',
   templateUrl: './search-bikes.component.html',
   styleUrls: ['./search-bikes.component.scss']
 })
-export class SearchBikesComponent implements OnInit {
-  displayedColumns: string[] = ['make', 'name', 'year', 'rating'];
+export class SearchBikesComponent implements OnInit, OnDestroy {
+  displayedColumns: string[] = ['make', 'name', 'year', 'rating', 'id'];
   bikes$: Observable<Bike[]> = this.structureBikesFacade.bikes$;
   dataSource: MatTableDataSource<Bike>;
+  bikesSubscription: Subscription;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private structureBikesFacade: StructureBikesFacade,
-              private router: Router) { }
+              private router: Router,
+              private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.SEARCH_BIKES);
     this.structureBikesFacade.incrementBikes();
 
-    this.bikes$.pipe(
+    this.bikesSubscription = this.bikes$.pipe(
       skipWhile((bikes: Bike[]) => !bikes || bikes.length === 0),
-      first(),
       map((bikes: Bike[]) => {
         this.dataSource = new MatTableDataSource(bikes);
         this.dataSource.paginator = this.paginator;
@@ -61,4 +63,16 @@ export class SearchBikesComponent implements OnInit {
     }
   }
 
+  onDelete(elementId: number): void {
+    this.dialogService.openConfirmDialog('search-bikes.delete')
+      .afterClosed().subscribe(res => {
+        if(res) {
+          this.structureBikesFacade.deleteBike(elementId);
+        }
+    });
+  }
+
+  ngOnDestroy() {
+    this.bikesSubscription.unsubscribe();
+  }
 }

@@ -2,7 +2,7 @@
   "language-selector": {
     "select-language": "Seleccione el idioma"
   },
-  "search-page": {
+  "search-bikes": {
     "filter": {
       "title": "Filtrar",
       "no-results": "No hay datos que coincidan con el filtro"
@@ -12,7 +12,9 @@
       "name": "Nombre",
       "year": "Año",
       "rating": "Clasificación"
-    }
+    },
+    "delete": "¿Estás seguro de que quieres eliminar esta Motocicletas?",
+    "no-bikes": "¡Actualmente no hay bicicletas! Por favor agregue Motocicletas para verlas aquí"
   },
   "navigation": {
     "search-bikes": "Buscar Motocicletas",
@@ -48,5 +50,9 @@
     "view-bike": "Ver motocicletas",
     "edit-bike": "Editar Bike",
     "edit-gallery": "Editar Galería"
+  },
+  "confirm-dialog": {
+    "yes": "Sí",
+    "no": "No"
   }
 }

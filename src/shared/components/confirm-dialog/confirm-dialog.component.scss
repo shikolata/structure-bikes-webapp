@@ -1,0 +1,14 @@
+.content-container {
+  margin: 5px 5px 15px 5px;
+  display: flex;
+}
+
+#close-icon {
+  margin-left: auto;
+  order: 2;
+  font-weight: bolder;
+}
+
+#close-icon:hover{
+  cursor: pointer;
+}
