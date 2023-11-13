@@ -51,8 +51,8 @@
       <app-gallery></app-gallery>
     </div>
 
-    <button mat-raised-button color="primary" type="submit">{{ primaryButtonName }}</button>
-    <button mat-raised-button color="primary" *ngIf="(currentPage$ | async) === page.VIEW_BIKE" (click)="onTertiaryEvent()" type="button">{{ tertiaryButtonName }}</button>
-    <button mat-raised-button color="secondary" *ngIf="showSecondaryButton" (click)="onCancel()" type="button">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">{{ "bike-form.button." + primaryButtonName | translate }}</button>
+    <button mat-raised-button color="primary" *ngIf="(currentPage$ | async) === page.VIEW_BIKE" (click)="onTertiaryEvent()" type="button">{{ "bike-form.button." + tertiaryButtonName | translate }}</button>
+    <button mat-raised-button color="secondary" *ngIf="showSecondaryButton" (click)="onCancel()" type="button">{{ "bike-form.button.cancel" | translate }}</button>
   </form>
 </mat-card>

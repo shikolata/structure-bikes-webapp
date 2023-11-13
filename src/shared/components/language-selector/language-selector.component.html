@@ -1,0 +1,12 @@
+<div class="centered">
+  <mat-form-field *ngIf="(currentPage$ | async) === page.SEARCH_BIKES">
+    <mat-label>
+      {{ 'language-selector.select-language' | translate }}
+    </mat-label>
+
+    <mat-select (selectionChange)="translate.use($event.value)"
+                [value]="translate.currentLang">
+      <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{ currentLanguage(lang) }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

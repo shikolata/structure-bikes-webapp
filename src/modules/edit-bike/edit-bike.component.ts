@@ -26,7 +26,7 @@ export class EditBikeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.structureBikesFacade.setCurrentPage(Page.VIEW_BIKE);
+    this.structureBikesFacade.setCurrentPage(Page.EDIT_BIKE);
     this.bikeId = this.route.snapshot.paramMap.get('id');
     this.structureBikesFacade.updateSelectedBike(+this.bikeId);
     this.selectedBikeSubscription = this.selectedBike$.pipe(

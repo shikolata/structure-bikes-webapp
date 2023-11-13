@@ -10,7 +10,8 @@ export enum Page {
 }
 
 export const Languages = {
-  en: 'English'
+  en: 'English',
+  es: 'Spanish'
 };
 
 export const EMPTY_BIKE_FORM: BikeForm = {

@@ -29,6 +29,16 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import { GalleryComponent } from '../shared/components/gallery/gallery.component';
 import { EditGalleryComponent } from '../modules/edit-gallery/edit-gallery.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpClient} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {LanguageSelectorComponent} from '../shared/components/language-selector/language-selector.component';
+import {MatSelectModule} from "@angular/material/select";
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [
@@ -40,7 +50,8 @@ import { EditGalleryComponent } from '../modules/edit-gallery/edit-gallery.compo
     EditBikeComponent,
     NavigationComponent,
     GalleryComponent,
-    EditGalleryComponent
+    EditGalleryComponent,
+    LanguageSelectorComponent
   ],
   imports: [
     HttpClientModule,
@@ -63,7 +74,15 @@ import { EditGalleryComponent } from '../modules/edit-gallery/edit-gallery.compo
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

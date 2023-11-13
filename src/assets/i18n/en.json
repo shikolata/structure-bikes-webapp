@@ -1,0 +1,48 @@
+{
+  "language-selector": {
+    "select-language": "Select Language"
+  },
+  "search-page": {
+    "filter": {
+      "title": "Filter",
+      "no-results": "No data matching the filter"
+    },
+    "column": {
+      "make": "Make",
+      "name": "Name",
+      "year": "Year",
+      "rating": "Rating"
+    }
+  },
+  "navigation": {
+    "search-bikes": "Search Bikes",
+    "add-bike": "Add Bike",
+    "view-bike": "View Bike",
+    "edit-bike": "Edit Bike",
+    "edit-gallery": "Edit Gallery"
+  },
+  "gallery": {
+    "images-list": "Images List",
+    "empty-gallery": "The Gallery is Empty"
+  },
+  "bike-form": {
+    "field": {
+      "name": "Name",
+      "year": "Year",
+      "make": "Make",
+      "model": "Model",
+      "description": "Description",
+      "rating": "Rating",
+      "price": "Price",
+      "quantity": "Quantity",
+      "category": "Category"
+    },
+    "button": {
+      "cancel": "Cancel",
+      "add-bike": "Add Bike",
+      "edit-bike": "Edit Bike",
+      "save-bike": "Save Bike",
+      "edit-gallery": "Edit Gallery"
+    }
+  }
+}
