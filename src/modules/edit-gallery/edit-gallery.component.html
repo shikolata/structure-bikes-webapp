@@ -1,0 +1,53 @@
+<app-navigation></app-navigation>
+
+<app-gallery
+  [isDeleteAvailable]="true"
+  (galleryDelete)="delete($event)"></app-gallery>
+
+<div *ngIf="(currentPage$ | async) === page.EDIT_GALLERY">
+  <input type="file" accept="image/*" (change)="selectFile($event)" style="display: none"  #fileUpload />
+  <button mat-raised-button color="basic" type="button"
+          (click)="fileUpload.click()">
+    Browse
+  </button>
+
+  <div>
+    <img [src]="preview" class="preview">
+  </div>
+
+  <div>
+    <button
+      mat-raised-button color="basic"
+      type="button"
+      [disabled]="!selectedFiles"
+      (click)="upload()"
+    >
+      Upload
+    </button>
+
+    <button
+      mat-raised-button color="basic"
+      type="button"
+      (click)="returnToViewBike()"
+    >
+      Return To View Bike
+    </button>
+  </div>
+
+  <div *ngIf="currentFile && progress" class="progress my-3">
+    <div
+      class="progress-bar progress-bar-info"
+      role="progressbar"
+      attr.aria-valuenow="{{ progress }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [ngStyle]="{ width: progress + '%' }"
+    >
+      {{ progress }}%
+    </div>
+  </div>
+
+  <div *ngIf="message" class="alert alert-secondary" role="alert">
+    {{ message }}
+  </div>
+</div>

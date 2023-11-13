@@ -27,6 +27,8 @@ import { NavigationComponent } from '../shared/components/navigation/navigation.
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
+import { GalleryComponent } from '../shared/components/gallery/gallery.component';
+import { EditGalleryComponent } from '../modules/edit-gallery/edit-gallery.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import {MatMenuModule} from "@angular/material/menu";
     BikeFormComponent,
     ViewBikeComponent,
     EditBikeComponent,
-    NavigationComponent
+    NavigationComponent,
+    GalleryComponent,
+    EditGalleryComponent
   ],
   imports: [
     HttpClientModule,

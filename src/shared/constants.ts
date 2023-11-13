@@ -5,7 +5,8 @@ export enum Page {
   SEARCH_BIKES = 'search-bikes',
   ADD_BIKE = 'add-bike',
   VIEW_BIKE = 'view-bike',
-  EDIT_BIKE = 'edit-bike'
+  EDIT_BIKE = 'edit-bike',
+  EDIT_GALLERY = 'edit-gallery'
 }
 
 export const Languages = {
@@ -21,7 +22,8 @@ export const EMPTY_BIKE_FORM: BikeForm = {
   rating: '',
   price: '',
   quantity: 0,
-  category: ''
+  category: '',
+  images: []
 };
 
 export const EMPTY_BIKE: Bike = {

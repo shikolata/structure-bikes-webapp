@@ -4,5 +4,7 @@
   [bikeForm]="viewBikeForm"
   [isFormDisabled]="true"
   [primaryButtonName]="page.EDIT_BIKE"
-  (submission)="onSubmit()">
+  [tertiaryButtonName]="page.EDIT_GALLERY"
+  (submission)="onSubmit()"
+  (tertiaryEvent)="onEditGallery()">
 </app-bike-form>

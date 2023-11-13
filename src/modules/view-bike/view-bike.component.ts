@@ -26,7 +26,7 @@ export class ViewBikeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.VIEW_BIKE);
-    this.bikeId = this.route.snapshot.paramMap.get('id') || '';
+    this.bikeId = this.route.snapshot.paramMap.get('id');
     this.structureBikesFacade.updateSelectedBike(+this.bikeId);
     this.selectedBikeSubscription = this.selectedBike$.pipe(
       skipWhile((selectedBike: Bike) => !selectedBike || selectedBike.id.toString() !== this.bikeId),
@@ -53,6 +53,10 @@ export class ViewBikeComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.router.navigate(['/edit-bike', { id: this.bikeId }]);
+  }
+
+  onEditGallery(): void {
+    this.router.navigate(['/edit-gallery', { id: this.bikeId }]);
   }
 
   ngOnDestroy() {

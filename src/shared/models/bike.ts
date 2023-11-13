@@ -1,4 +1,4 @@
-import {BasicEntity} from "./common";
+import {BasicEntity, Image} from "./common";
 
 export interface BikeForm {
   name: string;
@@ -10,6 +10,7 @@ export interface BikeForm {
   price: string;
   quantity: number;
   category: string;
+  images?: Image[];
 }
 
 export interface Bike extends BasicEntity, BikeForm {}
