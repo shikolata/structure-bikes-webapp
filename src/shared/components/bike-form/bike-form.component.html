@@ -2,47 +2,47 @@
   <form [formGroup]="bikeFormGroup" (ngSubmit)="onSubmit()" class="form">
     <div class="expansion-panel">
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
+        <mat-label>{{ "bike-form.field.name" | translate }}</mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Year</mat-label>
+        <mat-label>{{ "bike-form.field.year" | translate }}</mat-label>
         <input matInput formControlName="year">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Make</mat-label>
+        <mat-label>{{ "bike-form.field.make" | translate }}</mat-label>
         <input matInput formControlName="make">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Model</mat-label>
+        <mat-label>{{ "bike-form.field.model" | translate }}</mat-label>
         <input matInput formControlName="model">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Description</mat-label>
+        <mat-label>{{ "bike-form.field.description" | translate }}</mat-label>
         <input matInput formControlName="description">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Rating</mat-label>
+        <mat-label>{{ "bike-form.field.rating" | translate }}</mat-label>
         <input matInput formControlName="rating">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Price</mat-label>
+        <mat-label>{{ "bike-form.field.price" | translate }}</mat-label>
         <input matInput formControlName="price">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Quantity</mat-label>
+        <mat-label>{{ "bike-form.field.quantity" | translate }}</mat-label>
         <input matInput type="number" formControlName="quantity">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Category</mat-label>
+        <mat-label>{{ "bike-form.field.category" | translate }}</mat-label>
         <input matInput formControlName="category">
       </mat-form-field>
     </div>
