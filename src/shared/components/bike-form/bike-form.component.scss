@@ -1,7 +1,5 @@
 .form {
   height: 100%;
-  width: 95%;
-  margin: auto;
   align-items: normal;
   justify-content: center;
 }
@@ -9,4 +7,16 @@
 .expansion-panel {
   display: flex;
   flex-direction: column;
+}
+
+.centered {
+  justify-content: space-between;
+  width: 95%;
+  margin: auto auto 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }

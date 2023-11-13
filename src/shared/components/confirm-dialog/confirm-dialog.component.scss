@@ -1,14 +1,19 @@
-.content-container {
-  margin: 5px 5px 15px 5px;
+.dialog-box {
   display: flex;
 }
 
-#close-icon {
+.dialog-content {
+  text-align: center;
+  position: relative;
+}
+
+.close-icon {
   margin-left: auto;
   order: 2;
   font-weight: bolder;
+  justify-content: flex-end;
 }
 
-#close-icon:hover{
+.close-icon:hover{
   cursor: pointer;
 }

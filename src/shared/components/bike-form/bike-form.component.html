@@ -1,58 +1,64 @@
-<mat-card>
-  <form [formGroup]="bikeFormGroup" (ngSubmit)="onSubmit()" class="form">
-    <div class="expansion-panel">
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.name" | translate }}</mat-label>
-        <input matInput formControlName="name">
-      </mat-form-field>
+<div class="centered">
+  <mat-card>
+    <form [formGroup]="bikeFormGroup" (ngSubmit)="onSubmit()" class="form">
+      <div class="expansion-panel">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.name" | translate }}</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.year" | translate }}</mat-label>
-        <input matInput formControlName="year">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.year" | translate }}</mat-label>
+          <input matInput formControlName="year">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.make" | translate }}</mat-label>
-        <input matInput formControlName="make">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.make" | translate }}</mat-label>
+          <input matInput formControlName="make">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.model" | translate }}</mat-label>
-        <input matInput formControlName="model">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.model" | translate }}</mat-label>
+          <input matInput formControlName="model">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.description" | translate }}</mat-label>
-        <input matInput formControlName="description">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.description" | translate }}</mat-label>
+          <input matInput formControlName="description">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.rating" | translate }}</mat-label>
-        <input matInput formControlName="rating">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.rating" | translate }}</mat-label>
+          <input matInput formControlName="rating">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.price" | translate }}</mat-label>
-        <input matInput formControlName="price">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.price" | translate }}</mat-label>
+          <input matInput formControlName="price">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.quantity" | translate }}</mat-label>
-        <input matInput type="number" formControlName="quantity">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.quantity" | translate }}</mat-label>
+          <input matInput type="number" formControlName="quantity">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ "bike-form.field.category" | translate }}</mat-label>
-        <input matInput formControlName="category">
-      </mat-form-field>
-    </div>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "bike-form.field.category" | translate }}</mat-label>
+          <input matInput formControlName="category">
+        </mat-form-field>
+      </div>
 
-    <div>
-      <app-gallery></app-gallery>
-    </div>
+      <div>
+        <app-gallery></app-gallery>
+      </div>
 
-    <button mat-raised-button color="primary" type="submit">{{ "bike-form.button." + primaryButtonName | translate }}</button>
-    <button mat-raised-button color="primary" *ngIf="(currentPage$ | async) === page.VIEW_BIKE" (click)="onTertiaryEvent()" type="button">{{ "bike-form.button." + tertiaryButtonName | translate }}</button>
-    <button mat-raised-button color="secondary" *ngIf="showSecondaryButton" (click)="onCancel()" type="button">{{ "bike-form.button.cancel" | translate }}</button>
-  </form>
-</mat-card>
+      <div class="buttons">
+        <div>
+          <button mat-raised-button color="primary" type="submit" style="margin-right: 10px">{{ "bike-form.button." + primaryButtonName | translate }}</button>
+          <button mat-raised-button color="primary" *ngIf="(currentPage$ | async) === page.VIEW_BIKE" (click)="onTertiaryEvent()" type="button">{{ "bike-form.button." + tertiaryButtonName | translate }}</button>
+        </div>
+        <button mat-raised-button color="secondary" *ngIf="showSecondaryButton" (click)="onCancel()" type="button">{{ "bike-form.button.cancel" | translate }}</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

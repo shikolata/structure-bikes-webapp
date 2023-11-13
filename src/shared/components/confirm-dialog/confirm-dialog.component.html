@@ -1,8 +1,10 @@
-<div>
-  <div class="content-container">
-    <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
-    <span class="content-span full-width">{{ confirmationMessage | translate }}</span>
+<div class="dialog-box">
+  <div class="dialog-content">
+    <div style="display: flex">
+      <mat-icon (click)="closeDialog()" class="close-icon">close</mat-icon>
+    </div>
+    <h4 class="content-span full-width">{{ confirmationMessage | translate }}</h4>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" style="margin-right: ">{{ "confirm-dialog.yes" | translate }}</button>
+    <button mat-raised-button color="secondary" [mat-dialog-close]="false">{{ "confirm-dialog.no" | translate }}</button>
   </div>
-  <button mat-flat-button id="yes-button" [mat-dialog-close]="true">YES</button>
-  <button mat-flat-button id="no-button" [mat-dialog-close]="false">NO</button>
 </div>
