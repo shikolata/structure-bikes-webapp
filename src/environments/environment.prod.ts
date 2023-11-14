@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: ''
+  apiUrl: 'https://structure-bikes-services-e41f3a6ee18e.herokuapp.com'
 };
