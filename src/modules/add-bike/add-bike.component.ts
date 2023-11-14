@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {Bike, BikeForm} from "../../shared/models/bike";
-import {EMPTY_BIKE_FORM, Page} from "../../shared/constants";
+import {EMPTY_BIKE, EMPTY_BIKE_FORM, Page} from "../../shared/constants";
 import {FormGroup} from "@angular/forms";
 
 @Component({
@@ -19,6 +19,7 @@ export class AddBikeComponent implements OnInit {
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.ADD_BIKE);
+    this.structureBikesFacade.setSelectedBike(EMPTY_BIKE);
   }
 
   onSubmit(bikeForm: FormGroup): void {
