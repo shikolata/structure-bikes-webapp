@@ -21,9 +21,11 @@ Navigate to `http://localhost:4200/`; the application will automatically reload 
 - Form Validation
 - Weather widget (External API)
 
-## In Progress
+## In Progress / Nice to haves
 
 - Advanced/specific search filters
 - Design improvements
+- Upgrade Angular
+- Login & Registration
 
 The git repo for the BE server: https://github.com/shikolata/structure-bikes-services
