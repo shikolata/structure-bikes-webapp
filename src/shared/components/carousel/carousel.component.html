@@ -1,0 +1,11 @@
+<mat-card *ngIf="(selectedBike$ | async)?.images?.length > 0" style="margin-bottom: 20px; background-color: #673ab7">
+  <div style="margin-left: 10%; margin-right: 10%">
+    <ngx-slick-carousel class="carousel"
+                        #slickModal="slick-carousel"
+                        [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let image of (selectedBike$ | async).images" class="slide">
+        <img src="{{ image.url }}" alt="" class="img-style">
+      </div>
+    </ngx-slick-carousel>
+  </div>
+</mat-card>

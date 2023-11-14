@@ -1,4 +1,6 @@
 <div class="centered">
+  <app-carousel></app-carousel>
+
   <mat-card>
     <form [formGroup]="bikeFormGroup" (ngSubmit)="onSubmit()" class="form">
       <div class="expansion-panel">
@@ -110,10 +112,6 @@
             {{ "bike-form.field.errors.category-required" | translate }}
           </mat-error>
         </mat-form-field>
-      </div>
-
-      <div>
-        <app-gallery></app-gallery>
       </div>
 
       <div class="buttons">

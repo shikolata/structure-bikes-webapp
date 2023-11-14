@@ -37,6 +37,8 @@ import {MatSelectModule} from "@angular/material/select";
 import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {NgxMaskModule} from "ngx-mask";
+import { CarouselComponent } from '../shared/components/carousel/carousel.component';
+import {SlickCarouselModule} from "ngx-slick-carousel";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -55,7 +57,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     GalleryComponent,
     EditGalleryComponent,
     LanguageSelectorComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    CarouselComponent
   ],
   imports: [
     HttpClientModule,
@@ -88,7 +91,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     }),
     MatSelectModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    SlickCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
