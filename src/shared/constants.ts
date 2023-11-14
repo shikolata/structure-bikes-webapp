@@ -56,7 +56,9 @@ export const BIKE_CATEGORIES: string[] = [
   'Scooter',
   'Electric',
   'Dirt Bike',
-  'Trials Bike'
+  'Trials Bike',
+  'Classic',
+  'Street'
 ];
 
 export const BIKE_MAKES: string[] = [
