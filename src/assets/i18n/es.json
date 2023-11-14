@@ -68,5 +68,8 @@
   "confirm-dialog": {
     "yes": "Sí",
     "no": "No"
+  },
+  "weather": {
+    "feels-like": "Se Siente Como"
   }
 }

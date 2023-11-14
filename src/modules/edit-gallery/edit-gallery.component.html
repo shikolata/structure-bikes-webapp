@@ -4,7 +4,7 @@
   [isDeleteAvailable]="true"
   (galleryDelete)="delete($event)"></app-gallery>
 
-<div *ngIf="(currentPage$ | async) === page.EDIT_GALLERY">
+<div *ngIf="(currentPage$ | async) === page.EDIT_GALLERY" class="centered">
   <input type="file" accept="image/*" (change)="selectFile($event)" style="display: none"  #fileUpload />
   <button mat-raised-button color="basic" type="button"
           (click)="fileUpload.click()">
@@ -15,7 +15,7 @@
     <img [src]="preview" class="preview">
   </div>
 
-  <div>
+  <div class="buttons">
     <button
       mat-raised-button color="basic"
       type="button"

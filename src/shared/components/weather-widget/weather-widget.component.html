@@ -10,7 +10,7 @@
   </div>
   <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;">{{ (weather$ | async)?.tempCelsius }}°</div>
   <div class="weatherWidgetRow" style="font-size: 12px;">{{ (weather$ | async)?.tempMin }}° / {{ (weather$ | async)?.tempMax }}°</div>
-  <div class="weatherWidgetRow" style="font-size: 12px;">Feels Like: {{ (weather$ | async)?.tempFeelsLike }}°</div>
+  <div class="weatherWidgetRow" style="font-size: 12px;">{{ "weather.feels-like" | translate }}: {{ (weather$ | async)?.tempFeelsLike }}°</div>
   <div class="weatherWidgetRow" style="font-size: 25px;margin-top: 10px;">{{ (weather$ | async)?.name }}</div>
   <div class="weatherWidgetRow" style="font-size: 12px;">Humidity: {{ (weather$ | async)?.humidity }}%</div>
 </div>
