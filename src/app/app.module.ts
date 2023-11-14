@@ -39,6 +39,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {NgxMaskModule} from "ngx-mask";
 import { CarouselComponent } from '../shared/components/carousel/carousel.component';
 import {SlickCarouselModule} from "ngx-slick-carousel";
+import { WeatherWidgetComponent } from '../shared/components/weather-widget/weather-widget.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -58,7 +59,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     EditGalleryComponent,
     LanguageSelectorComponent,
     ConfirmDialogComponent,
-    CarouselComponent
+    CarouselComponent,
+    WeatherWidgetComponent
   ],
   imports: [
     HttpClientModule,

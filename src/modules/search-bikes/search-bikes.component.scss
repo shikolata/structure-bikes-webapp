@@ -1,7 +1,15 @@
 .centered {
-  justify-content: space-between;
   width: 95%;
   margin: auto auto 20px;
+}
+
+.top-section {
+  display: flex;
+}
+
+.inner-container {
+  width: 100%;
+  margin-right: 1%;
 }
 
 table {

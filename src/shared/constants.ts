@@ -1,4 +1,5 @@
 import {Bike, BikeForm} from "./models/bike";
+import {Weather} from "./models/weather";
 
 export enum Page {
   NONE = 'none',
@@ -30,6 +31,17 @@ export const EMPTY_BIKE_FORM: BikeForm = {
 export const EMPTY_BIKE: Bike = {
   id: 0,
   ...EMPTY_BIKE_FORM
+}
+
+export const EMPTY_WEATHER: Weather = {
+  name: undefined,
+  sunsetTime:  undefined,
+  isDay:  undefined,
+  tempCelsius:  undefined,
+  tempMin:  undefined,
+  tempMax:  undefined,
+  tempFeelsLike:  undefined,
+  humidity:  undefined
 }
 
 export const BIKE_CATEGORIES: string[] = [

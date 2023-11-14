@@ -13,6 +13,7 @@ export class StructureBikesFacade {
   currentPage$ = this.store.pipe(select(StructureBikesSelectors.currentPage$));
   bikes$ = this.store.pipe(select(StructureBikesSelectors.bikes$));
   selectedBike$ = this.store.pipe(select(StructureBikesSelectors.selectedBike$));
+  weather$ = this.store.pipe(select(StructureBikesSelectors.weather$));
 
   constructor(private store: Store<StructureBikesStoreState>) {}
 
@@ -42,5 +43,9 @@ export class StructureBikesFacade {
 
   deleteBike(bikeId: number): void {
     this.store.dispatch(StructureBikesActions.deleteBike({bikeId}));
+  }
+
+  viewWeather(): void {
+    this.store.dispatch(StructureBikesActions.viewWeather());
   }
 }

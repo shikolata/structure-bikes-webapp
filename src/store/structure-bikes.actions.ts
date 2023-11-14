@@ -1,6 +1,7 @@
 import {createAction, props} from '@ngrx/store';
 import {Page} from '../shared/constants';
 import {Bike} from "../shared/models/bike";
+import {Weather} from "../shared/models/weather";
 
 export const setCurrentPage = createAction('[Page] Set', props<{ currentPage: Page }>());
 export const setSelectedBike = createAction('[Bike] Set', props<{ selectedBike: Bike }>());
@@ -19,3 +20,6 @@ export const editBikeFailure = createAction('[Bikes] Edit Failure', props<{ erro
 export const deleteBike = createAction('[Bike] Delete', props<{ bikeId: number }>());
 export const deleteBikeSuccess = createAction('[Bike] Delete Success');
 export const deleteBikeFailure = createAction('[Bike] Delete Failure', props<{ error: any }>());
+export const viewWeather = createAction('[Weather] View');
+export const viewWeatherSuccess = createAction('[Weather] View Success', props<{ weather: Weather }>());
+export const viewWeatherFailure = createAction('[Weather] View Failure', props<{ error: any }>());
