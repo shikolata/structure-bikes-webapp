@@ -59,6 +59,7 @@ export class EditBikeComponent implements OnInit, OnDestroy {
     }
     const rawForm = bikeFormGroup.getRawValue();
     rawForm.id = Number(this.bikeId);
+    console.log(rawForm);
     const editedBike: Bike = rawForm as Bike;
 
     this.structureBikesFacade.editBike(editedBike);

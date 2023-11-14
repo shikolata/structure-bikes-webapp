@@ -29,15 +29,29 @@
   },
   "bike-form": {
     "field": {
-      "name": "Nombre",
-      "year": "Año",
-      "make": "Hacer",
-      "model": "Modelo",
-      "description": "Descripción",
-      "rating": "Clasificación",
-      "price": "Precio",
-      "quantity": "Cantidad",
-      "category": "Categoría"
+      "labels": {
+        "name": "Nombre",
+        "year": "Año",
+        "make": "Hacer",
+        "model": "Modelo",
+        "description": "Descripción",
+        "rating": "Clasificación",
+        "price": "Precio",
+        "quantity": "Cantidad",
+        "category": "Categoría"
+      },
+      "errors": {
+        "name-required": "Por favor ingresa el nombre de la Motocicletas",
+        "year-required": "Ingrese el año de fabricación de la Motocicletas",
+        "year-invalid": "Por favor, introduzca un año válido",
+        "make-required": "Por favor seleccione la marca de la Motocicletas",
+        "model-required": "Por favor introduce el modelo de Motocicletas",
+        "description-required": "Por favor ingresa la descripción de la Motocicletas",
+        "rating-required": "Por favor introduce la calificación de la Motocicletas",
+        "price-required": "Por favor introduce el precio de la Motocicletas",
+        "quantity-required": "Por favor ingrese la cantidad disponible de la Motocicletas",
+        "category-required": "Por favor seleccione la categoría de la Motocicletas"
+      }
     },
     "button": {
       "cancel": "Cancelar",

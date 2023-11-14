@@ -28,6 +28,8 @@ export class AddBikeComponent implements OnInit {
     }
 
     const rawForm = bikeForm.getRawValue();
+    console.log(rawForm);
+    rawForm.price = Number(rawForm.price);
     const newBike: Bike = rawForm as Bike;
 
     this.structureBikesFacade.addBike(newBike);

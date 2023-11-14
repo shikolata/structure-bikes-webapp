@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {BikeForm} from "../../models/bike";
 import {Observable} from "rxjs";
-import {Page} from "../../constants";
+import {BIKE_CATEGORIES, BIKE_MAKES, Page} from "../../constants";
 import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {BikeFormValidators} from "./bike-form.validators";
 
 @Component({
   selector: 'app-bike-form',
@@ -39,6 +40,9 @@ export class BikeFormComponent implements OnInit, OnChanges {
   page = Page;
   bikeFormGroup: FormGroup;
 
+  readonly BIKE_CATEGORIES = BIKE_CATEGORIES;
+  readonly BIKE_MAKES = BIKE_MAKES;
+
   constructor(private formBuilder: FormBuilder,
               private structureBikesFacade: StructureBikesFacade) { }
 
@@ -53,6 +57,7 @@ export class BikeFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit(): void {
+    console.log(this.bikeFormGroup)
     this.submission.emit(this.bikeFormGroup);
   }
 
@@ -67,7 +72,7 @@ export class BikeFormComponent implements OnInit, OnChanges {
   setBikeFormGroup(bikeForm: BikeForm): void {
     this.bikeFormGroup = this.formBuilder.group({
       name: [{value: bikeForm.name, disabled: this.isFormDisabled}, Validators.required],
-      year: [{value: bikeForm.year, disabled: this.isFormDisabled}, Validators.required],
+      year: [{value: bikeForm.year, disabled: this.isFormDisabled}, [Validators.required, BikeFormValidators.yearValidator()]],
       make: [{value: bikeForm.make, disabled: this.isFormDisabled}, Validators.required],
       model: [{value: bikeForm.model, disabled: this.isFormDisabled}, Validators.required],
       description: [{value: bikeForm.description, disabled: this.isFormDisabled}, Validators.required],

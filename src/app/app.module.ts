@@ -36,6 +36,7 @@ import {LanguageSelectorComponent} from '../shared/components/language-selector/
 import {MatSelectModule} from "@angular/material/select";
 import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {NgxMaskModule} from "ngx-mask";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -87,6 +88,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     }),
     MatSelectModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

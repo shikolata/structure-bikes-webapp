@@ -7,7 +7,7 @@ export interface BikeForm {
   model: string;
   description: string;
   rating: string;
-  price: string;
+  price: number;
   quantity: number;
   category: string;
   images?: Image[];

@@ -29,15 +29,29 @@
   },
   "bike-form": {
     "field": {
-      "name": "Name",
-      "year": "Year",
-      "make": "Make",
-      "model": "Model",
-      "description": "Description",
-      "rating": "Rating",
-      "price": "Price",
-      "quantity": "Quantity",
-      "category": "Category"
+      "labels": {
+        "name": "Name",
+        "year": "Year",
+        "make": "Make",
+        "model": "Model",
+        "description": "Description",
+        "rating": "Rating",
+        "price": "Price",
+        "quantity": "Quantity",
+        "category": "Category"
+      },
+      "errors": {
+        "name-required": "Please enter the Bike's Name",
+        "year-required": "Please enter the Bike's Year of Manufacture",
+        "year-invalid": "Please enter a valid Year",
+        "make-required": "Please select the Bike's Make",
+        "model-required": "Please enter the Bike's Model",
+        "description-required": "Please enter the Bike's Description",
+        "rating-required": "Please enter the Bike's Rating",
+        "price-required": "Please enter the Bike's Price",
+        "quantity-required": "Please enter the Bike's available Quantity",
+        "category-required": "Please select the Bike's Category"
+      }
     },
     "button": {
       "cancel": "Cancel",
