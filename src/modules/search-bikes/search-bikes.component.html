@@ -1,11 +1,15 @@
 <div class="centered top-section">
   <div class="inner-container">
-    <app-language-selector class="centered"></app-language-selector>
+    <div class="centered">
+      <app-language-selector class="centered"></app-language-selector>
+    </div>
     <app-navigation></app-navigation>
-    <mat-form-field appearance="standard" class="centered">
-      <mat-label>{{ "search-bikes.filter.title" | translate }}</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-    </mat-form-field>
+    <div class="centered">
+      <mat-form-field appearance="standard" class="centered">
+        <mat-label>{{ "search-bikes.filter.title" | translate }}</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+    </div>
   </div>
   <app-weather-widget-main></app-weather-widget-main>
 </div>
