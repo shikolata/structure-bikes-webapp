@@ -3,7 +3,7 @@ import {BikeForm} from "../../models/bike";
 import {Observable} from "rxjs";
 import {BIKE_CATEGORIES, BIKE_MAKES, Page} from "../../constants";
 import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {BikeFormValidators} from "./bike-form.validators";
 
 @Component({
@@ -38,12 +38,12 @@ export class BikeFormComponent implements OnInit, OnChanges {
 
   currentPage$: Observable<Page> = this.structureBikesFacade.currentPage$;
   page = Page;
-  bikeFormGroup: FormGroup;
+  bikeFormGroup: UntypedFormGroup;
 
   readonly BIKE_CATEGORIES = BIKE_CATEGORIES;
   readonly BIKE_MAKES = BIKE_MAKES;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private structureBikesFacade: StructureBikesFacade) { }
 
   ngOnInit(): void {

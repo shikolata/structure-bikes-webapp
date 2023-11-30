@@ -5,7 +5,7 @@ import {EMPTY_BIKE_FORM, Page} from "../../shared/constants";
 import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {ActivatedRoute, Router} from "@angular/router";
 import {first, map} from "rxjs/operators";
-import {FormGroup} from "@angular/forms";
+import {UntypedFormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-bike',
@@ -52,7 +52,7 @@ export class EditBikeComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit(bikeFormGroup: FormGroup): void {
+  onSubmit(bikeFormGroup: UntypedFormGroup): void {
     if (bikeFormGroup.invalid) {
       console.log('form is invalid!');
       return;

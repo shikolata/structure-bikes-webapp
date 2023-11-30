@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {Bike, BikeForm} from "../../shared/models/bike";
 import {EMPTY_BIKE, EMPTY_BIKE_FORM, Page} from "../../shared/constants";
-import {FormGroup} from "@angular/forms";
+import {UntypedFormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-add-bike',
@@ -22,7 +22,7 @@ export class AddBikeComponent implements OnInit {
     this.structureBikesFacade.setSelectedBike(EMPTY_BIKE);
   }
 
-  onSubmit(bikeForm: FormGroup): void {
+  onSubmit(bikeForm: UntypedFormGroup): void {
     if (bikeForm.invalid) {
       console.log('form is invalid!');
       return;
