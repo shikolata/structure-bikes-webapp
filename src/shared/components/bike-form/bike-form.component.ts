@@ -57,7 +57,6 @@ export class BikeFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit(): void {
-    console.log(this.bikeFormGroup)
     this.submission.emit(this.bikeFormGroup);
   }
 
