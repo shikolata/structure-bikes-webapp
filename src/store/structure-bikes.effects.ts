@@ -127,7 +127,6 @@ export class StructureBikesEffects {
     weather.tempMax = (weatherResponse.main.temp_max - 273.15).toFixed(0);
     weather.tempFeelsLike = (weatherResponse.main.feels_like - 273.15).toFixed(0);
     weather.humidity = weatherResponse.main.humidity;
-    console.log({weather});
     return weather;
   }
 }
