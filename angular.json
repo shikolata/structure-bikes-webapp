@@ -78,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "structure-bikes-webapp:build:production"
+              "buildTarget": "structure-bikes-webapp:build:production"
             },
             "development": {
-              "browserTarget": "structure-bikes-webapp:build:development"
+              "buildTarget": "structure-bikes-webapp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,7 +89,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "structure-bikes-webapp:build"
+            "buildTarget": "structure-bikes-webapp:build"
           }
         },
         "test": {
