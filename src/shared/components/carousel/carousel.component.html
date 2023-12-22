@@ -1,5 +1,5 @@
 <mat-card *ngIf="(selectedBike$ | async)?.images?.length > 0" style="margin-bottom: 20px; background-color: #673ab7">
-  <div style="margin-left: 10%; margin-right: 10%">
+  <div style="margin: 1% 10%">
     <ngx-slick-carousel class="carousel"
                         #slickModal="slick-carousel"
                         [config]="slideConfig">
