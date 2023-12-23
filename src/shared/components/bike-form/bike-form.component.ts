@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject} from '@angular/core';
 import {BikeForm} from "../../models/bike";
 import {Observable} from "rxjs";
 import {BIKE_CATEGORIES, BIKE_MAKES, Page} from "../../constants";
@@ -24,6 +24,9 @@ import { CarouselComponent } from '../carousel/carousel.component';
     imports: [CarouselComponent, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf, MatSelectModule, NgFor, MatOptionModule, NgxMaskModule, MatButtonModule, AsyncPipe, TranslateModule]
 })
 export class BikeFormComponent implements OnInit, OnChanges {
+  private formBuilder: UntypedFormBuilder = inject(UntypedFormBuilder);
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+
   @Input()
   bikeForm: BikeForm;
 
@@ -54,9 +57,6 @@ export class BikeFormComponent implements OnInit, OnChanges {
 
   readonly BIKE_CATEGORIES = BIKE_CATEGORIES;
   readonly BIKE_MAKES = BIKE_MAKES;
-
-  constructor(private formBuilder: UntypedFormBuilder,
-              private structureBikesFacade: StructureBikesFacade) { }
 
   ngOnInit(): void {
     this.setBikeFormGroup(this.bikeForm);

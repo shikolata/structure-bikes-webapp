@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild, inject} from '@angular/core';
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import {Bike} from "../../shared/models/bike";
 import { MatSort, MatSortModule } from "@angular/material/sort";
@@ -27,16 +27,17 @@ import { LanguageSelectorComponent } from '../../shared/components/language-sele
     imports: [LanguageSelectorComponent, NavigationComponent, MatFormFieldModule, MatInputModule, WeatherWidgetComponent, MatTableModule, MatSortModule, MatButtonModule, MatIconModule, NgIf, MatPaginatorModule, AsyncPipe, TranslateModule]
 })
 export class SearchBikesComponent implements OnInit, OnDestroy {
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+  private router: Router = inject(Router);
+  private dialogService: DialogService = inject(DialogService);
+
   displayedColumns: string[] = ['make', 'name', 'year', 'rating', 'id'];
   bikes$: Observable<Bike[]> = this.structureBikesFacade.bikes$;
   dataSource: MatTableDataSource<Bike>;
   bikesSubscription: Subscription;
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-  constructor(private structureBikesFacade: StructureBikesFacade,
-              private router: Router,
-              private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.SEARCH_BIKES);

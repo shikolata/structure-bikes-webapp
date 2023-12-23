@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Languages, Page} from '../../constants';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import {Observable} from 'rxjs';
@@ -16,11 +16,11 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
     imports: [NgIf, MatFormFieldModule, MatSelectModule, NgFor, MatOptionModule, AsyncPipe, TranslateModule]
 })
 export class LanguageSelectorComponent {
+  private translateService: TranslateService = inject(TranslateService);
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+  
   currentPage$: Observable<Page> = this.structureBikesFacade.currentPage$;
   page = Page;
-
-  constructor(private translateService: TranslateService,
-              private structureBikesFacade: StructureBikesFacade) {}
 
   currentLanguage(lang: string): string {
     return Languages[lang];

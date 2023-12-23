@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {Page} from "../../constants";
 import {Observable} from "rxjs";
 import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
@@ -18,12 +18,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     imports: [MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, RouterLink, AsyncPipe, TranslateModule]
 })
 export class NavigationComponent implements OnInit {
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+
   page = Page;
   currentPage$: Observable<Page> = this.structureBikesFacade.currentPage$;
 
-  constructor(private structureBikesFacade: StructureBikesFacade) {}
-
   ngOnInit(): void {
   }
-
 }

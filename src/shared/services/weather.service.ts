@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Bike } from '../models/bike';
 import { Observable, throwError } from 'rxjs';
@@ -9,9 +9,11 @@ import {Weather, WeatherResponse} from "../models/weather";
   providedIn: 'root',
 })
 export class WeatherService {
+  private http: HttpClient = inject(HttpClient);
+
   // Define API
   apiURL = 'https://api.openweathermap.org/data/2.5/weather?q=lasvegas&appid=ff1bc4683fc7325e9c57e586c20cc03e';
-  constructor(private http: HttpClient) {}
+
   getWeather(): Observable<WeatherResponse> {
     return this.http
       .get<WeatherResponse>(`${this.apiURL}`)

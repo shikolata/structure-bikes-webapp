@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Bike } from '../models/bike';
 import { Observable, throwError } from 'rxjs';
@@ -8,9 +8,11 @@ import {environment} from '../../environments/environment';
   providedIn: 'root',
 })
 export class ImageService {
+  private http: HttpClient = inject(HttpClient);
+
   // Define API
   apiURL = environment.apiUrl;
-  constructor(private http: HttpClient) {}
+
   /*========================================
     CRUD Methods for consuming RESTful API
   =========================================*/

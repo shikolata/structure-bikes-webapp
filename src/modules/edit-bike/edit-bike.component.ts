@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, inject} from '@angular/core';
 import {Bike, BikeForm} from "../../shared/models/bike";
 import {Observable, skipWhile, Subscription} from "rxjs";
 import {EMPTY_BIKE_FORM, Page} from "../../shared/constants";
@@ -17,16 +17,15 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
     imports: [NavigationComponent, BikeFormComponent]
 })
 export class EditBikeComponent implements OnInit, OnDestroy {
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade)
+  private router: Router = inject(Router);
+
   @Input('id') bikeId: string;
-  editBikeForm: BikeForm;
+
+  editBikeForm: BikeForm = EMPTY_BIKE_FORM;
   selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;
   page = Page;
   selectedBikeSubscription: Subscription;
-
-  constructor(private structureBikesFacade: StructureBikesFacade,
-              private router: Router) {
-    this.editBikeForm = EMPTY_BIKE_FORM;
-  }
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.EDIT_BIKE);

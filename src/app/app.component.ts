@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import { RouterOutlet } from '@angular/router';
 
@@ -9,10 +9,11 @@ import { RouterOutlet } from '@angular/router';
     standalone: true,
     imports: [RouterOutlet]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  private translateService: TranslateService = inject(TranslateService);
   title = 'structure-bikes-webapp';
 
-  constructor(private translateService: TranslateService) {
+  ngOnInit(): void {
     if (this.translateService.store.langs.length === 0) {
       this.translateService.addLangs(['en', 'es']);
       this.translateService.setDefaultLang('en');

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, inject} from '@angular/core';
 import {Observable} from "rxjs";
 import {Bike} from "../../models/bike";
 import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
@@ -15,6 +15,8 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
     imports: [NgIf, NgFor, MatButtonModule, MatIconModule, AsyncPipe, TranslateModule]
 })
 export class GalleryComponent {
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+  
   @Input()
   isDeleteAvailable = false;
 
@@ -22,8 +24,6 @@ export class GalleryComponent {
   galleryDelete = new EventEmitter<string>();
 
   selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;
-
-  constructor(private structureBikesFacade: StructureBikesFacade) {}
 
   onDelete(imageName: string): void {
     this.galleryDelete.emit(imageName);

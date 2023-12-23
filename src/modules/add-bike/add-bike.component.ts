@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {Bike, BikeForm} from "../../shared/models/bike";
 import {EMPTY_BIKE, EMPTY_BIKE_FORM, Page} from "../../shared/constants";
@@ -14,12 +14,10 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
     imports: [NavigationComponent, BikeFormComponent]
 })
 export class AddBikeComponent implements OnInit {
-  addBikeForm: BikeForm;
-  page = Page;
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
 
-  constructor(private structureBikesFacade: StructureBikesFacade) {
-    this.addBikeForm = EMPTY_BIKE_FORM;
-  }
+  addBikeForm: BikeForm = EMPTY_BIKE_FORM;
+  page = Page;
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.ADD_BIKE);

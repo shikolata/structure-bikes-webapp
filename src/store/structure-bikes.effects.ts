@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, inject} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {catchError, exhaustMap, first, map, switchMap, takeWhile} from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -33,6 +33,12 @@ import {EMPTY_WEATHER} from "../shared/constants";
   providedIn: 'root'
 })
 export class StructureBikesEffects {
+  private actions$: Actions = inject(Actions);
+  private bikeService: BikeService = inject(BikeService);
+  private weatherService: WeatherService = inject(WeatherService);
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+  private router: Router = inject(Router);
+
     incrementBikes$ = createEffect(() => this.actions$.pipe(
     ofType(incrementBikes),
     switchMap(() => this.bikeService.getBikes().pipe(
@@ -106,14 +112,6 @@ export class StructureBikesEffects {
       catchError((error) => of(viewWeatherFailure({ error })))
     ))
   ));
-
-  constructor(
-    private actions$: Actions,
-    private bikeService: BikeService,
-    private weatherService: WeatherService,
-    private structureBikesFacade: StructureBikesFacade,
-    private router: Router
-  ) {}
 
   generateWeather(weatherResponse: WeatherResponse): Weather {
     let weather: Weather = EMPTY_WEATHER;

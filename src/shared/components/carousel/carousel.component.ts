@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, inject} from '@angular/core';
 import {Observable} from "rxjs";
 import {Bike} from "../../models/bike";
 import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
@@ -13,7 +13,9 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
     standalone: true,
     imports: [NgIf, MatCardModule, SlickCarouselModule, NgFor, AsyncPipe]
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+
   selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;
 
   slideConfig = {
@@ -44,10 +46,4 @@ export class CarouselComponent implements OnInit {
       }
     ]
   }
-
-  constructor(private structureBikesFacade: StructureBikesFacade) { }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import {Observable} from "rxjs";
 import {Page} from "../../shared/constants";
 import {Router} from "@angular/router";
@@ -19,7 +19,12 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
     imports: [NavigationComponent, GalleryComponent, NgIf, MatButtonModule, NgStyle, AsyncPipe]
 })
 export class EditGalleryComponent implements OnInit {
+  private router: Router = inject(Router);
+  private imageService: ImageService = inject(ImageService);
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+
   @Input('id') bikeId: string;
+
   selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
@@ -28,11 +33,6 @@ export class EditGalleryComponent implements OnInit {
 
   currentPage$: Observable<Page> = this.structureBikesFacade.currentPage$;
   page = Page;
-
-  constructor(
-    private router: Router,
-    private imageService: ImageService,
-    private structureBikesFacade: StructureBikesFacade) {}
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.EDIT_GALLERY);

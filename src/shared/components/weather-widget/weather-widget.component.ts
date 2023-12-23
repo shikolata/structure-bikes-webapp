@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
 import {Observable} from "rxjs";
 import {Weather} from "../../models/weather";
@@ -13,8 +13,9 @@ import { NgIf, AsyncPipe } from '@angular/common';
     imports: [NgIf, AsyncPipe, TranslateModule]
 })
 export class WeatherWidgetComponent implements OnInit {
+  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+
   weather$: Observable<Weather> = this.structureBikesFacade.weather$;
-  constructor(private structureBikesFacade: StructureBikesFacade) {}
 
   ngOnInit() {
     this.structureBikesFacade.viewWeather();

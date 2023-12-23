@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogClose } from "@angular/material/dialog";
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,9 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
     imports: [MatIconModule, MatButtonModule, MatDialogClose, TranslateModule]
 })
 export class ConfirmDialogComponent {
-
-  constructor(@Inject(MAT_DIALOG_DATA) private data: any,
-              private dialogRef: MatDialogRef<ConfirmDialogComponent>) { }
+  private data: any = inject(MAT_DIALOG_DATA);
+  private dialogRef: MatDialogRef<ConfirmDialogComponent> = inject(MatDialogRef<ConfirmDialogComponent>);
 
   get confirmationMessage(): string {
     return this.data.message;
@@ -23,5 +22,4 @@ export class ConfirmDialogComponent {
   closeDialog() {
     this.dialogRef.close(false);
   }
-
 }

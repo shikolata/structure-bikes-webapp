@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {StructureBikesStoreState} from './structure-bikes.reducer';
 import * as StructureBikesSelectors from './structure-bikes.selectors';
@@ -10,12 +10,12 @@ import {Page} from '../shared/constants';
   providedIn: 'root'
 })
 export class StructureBikesFacade {
+  private store: Store<StructureBikesStoreState> = inject(Store<StructureBikesStoreState>);
+
   currentPage$ = this.store.pipe(select(StructureBikesSelectors.currentPage$));
   bikes$ = this.store.pipe(select(StructureBikesSelectors.bikes$));
   selectedBike$ = this.store.pipe(select(StructureBikesSelectors.selectedBike$));
   weather$ = this.store.pipe(select(StructureBikesSelectors.weather$));
-
-  constructor(private store: Store<StructureBikesStoreState>) {}
 
   setCurrentPage(currentPage: Page): void {
     this.store.dispatch(StructureBikesActions.setCurrentPage({currentPage}));
