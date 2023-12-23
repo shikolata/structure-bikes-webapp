@@ -7,7 +7,7 @@ import {HttpEventType} from "@angular/common/http";
 import {Bike} from "../../shared/models/bike";
 import {ImageService} from "../../shared/services/image.service";
 import { MatButtonModule } from '@angular/material/button';
-import { NgIf, NgStyle, AsyncPipe } from '@angular/common';
+import { NgStyle, AsyncPipe } from '@angular/common';
 import { GalleryComponent } from '../../shared/components/gallery/gallery.component';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 
@@ -16,7 +16,7 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
     templateUrl: './edit-gallery.component.html',
     styleUrls: ['./edit-gallery.component.scss'],
     standalone: true,
-    imports: [NavigationComponent, GalleryComponent, NgIf, MatButtonModule, NgStyle, AsyncPipe]
+    imports: [NavigationComponent, GalleryComponent, MatButtonModule, NgStyle, AsyncPipe]
 })
 export class EditGalleryComponent implements OnInit {
   private router: Router = inject(Router);

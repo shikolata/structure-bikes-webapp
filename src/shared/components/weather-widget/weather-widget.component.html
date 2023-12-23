@@ -1,10 +1,13 @@
 <div id="divWeatherMain">
-  <div *ngIf="(weather$ | async)?.isDay" class="weatherWidgetRow">
-    <i class="fas fa-3x fa-sun sun"></i>
-  </div>
-  <div *ngIf="!(weather$ | async)?.isDay" class="weatherWidgetRow">
-    <i class="fas fa-3x fa-moon moon"></i>
-  </div>
+  @if ((weather$ | async)?.isDay) {
+    <div class="weatherWidgetRow">
+      <i class="fas fa-3x fa-sun sun"></i>
+    </div>
+  } @else {
+    <div class="weatherWidgetRow">
+      <i class="fas fa-3x fa-moon moon"></i>
+    </div>
+  }
   <div class="weatherWidgetRow cloudDiv">
     <i class="fas fa-cloud fa-3x cloud"></i>
   </div>

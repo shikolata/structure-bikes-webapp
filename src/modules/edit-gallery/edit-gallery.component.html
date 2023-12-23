@@ -6,50 +6,56 @@
   [isDeleteAvailable]="true"
   (galleryDelete)="delete($event)"/>
 
-<div *ngIf="(currentPage$ | async) === page.EDIT_GALLERY" class="centered">
-  <input type="file" accept="image/*" (change)="selectFile($event)" style="display: none"  #fileUpload />
-  <button mat-raised-button color="basic" type="button"
-          (click)="fileUpload.click()">
-    Browse
-  </button>
-
-  <div>
-    <img [src]="preview" class="preview">
-  </div>
-
-  <div class="buttons">
-    <button
-      mat-raised-button color="basic"
-      type="button"
-      [disabled]="!selectedFiles"
-      (click)="upload()"
-    >
-      Upload
+@if ((currentPage$ | async) === page.EDIT_GALLERY) {
+  <div class="centered">
+    <input type="file" accept="image/*" (change)="selectFile($event)" style="display: none"  #fileUpload />
+    <button mat-raised-button color="basic" type="button"
+            (click)="fileUpload.click()">
+      Browse
     </button>
-
-    <button
-      mat-raised-button color="basic"
-      type="button"
-      (click)="returnToViewBike()"
-    >
-      Return To View Bike
-    </button>
-  </div>
-
-  <div *ngIf="currentFile && progress" class="progress my-3">
-    <div
-      class="progress-bar progress-bar-info"
-      role="progressbar"
-      attr.aria-valuenow="{{ progress }}"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      [ngStyle]="{ width: progress + '%' }"
-    >
-      {{ progress }}%
+  
+    <div>
+      <img [src]="preview" class="preview">
     </div>
-  </div>
+  
+    <div class="buttons">
+      <button
+        mat-raised-button color="basic"
+        type="button"
+        [disabled]="!selectedFiles"
+        (click)="upload()"
+      >
+        Upload
+      </button>
+  
+      <button
+        mat-raised-button color="basic"
+        type="button"
+        (click)="returnToViewBike()"
+      >
+        Return To View Bike
+      </button>
+    </div>
 
-  <div *ngIf="message" class="alert alert-secondary" role="alert">
-    {{ message }}
+    @if (currentFile && progress) {
+      <div class="progress my-3">
+        <div
+          class="progress-bar progress-bar-info"
+          role="progressbar"
+          attr.aria-valuenow="{{ progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progress + '%' }"
+        >
+          {{ progress }}%
+        </div>
+      </div>
+    }
+
+    @if (message) {
+      <div class="alert alert-secondary" role="alert">
+        {{ message }}
+      </div>
+    }
   </div>
-</div>
+}

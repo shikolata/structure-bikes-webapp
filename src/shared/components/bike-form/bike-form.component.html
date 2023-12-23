@@ -7,119 +7,167 @@
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.name" | translate }}</mat-label>
           <input matInput formControlName="name">
-          <mat-error *ngIf="bikeFormGroup.controls.name.invalid &&
-                            !!bikeFormGroup.controls.name.errors &&
-                            bikeFormGroup.controls.name.errors?.required &&
-                            (bikeFormGroup.controls.name.dirty || bikeFormGroup.controls.name.touched)">
-            {{ "bike-form.field.errors.name-required" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.name.invalid &&
+            !!bikeFormGroup.controls.name.errors &&
+            bikeFormGroup.controls.name.errors?.required &&
+            (bikeFormGroup.controls.name.dirty || bikeFormGroup.controls.name.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.name-required" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.year" | translate }}</mat-label>
           <input matInput type="number" formControlName="year">
-          <mat-error *ngIf="bikeFormGroup.controls.year.invalid &&
-                            !!bikeFormGroup.controls.year.errors &&
-                            bikeFormGroup.controls.year.errors?.required &&
-                            (bikeFormGroup.controls.year.dirty || bikeFormGroup.controls.year.touched)">
-            {{ "bike-form.field.errors.year-required" | translate }}
-          </mat-error>
-          <mat-error *ngIf="bikeFormGroup.controls.year.invalid &&
-                            !!bikeFormGroup.controls.year.errors &&
-                            bikeFormGroup.controls.year.errors?.invalidYear &&
-                            (bikeFormGroup.controls.year.dirty || bikeFormGroup.controls.year.touched)">
-            {{ "bike-form.field.errors.year-invalid" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.year.invalid &&
+            !!bikeFormGroup.controls.year.errors &&
+            bikeFormGroup.controls.year.errors?.required &&
+            (bikeFormGroup.controls.year.dirty || bikeFormGroup.controls.year.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.year-required" | translate }}
+            </mat-error>
+          }
+          @if (
+            bikeFormGroup.controls.year.invalid &&
+            !!bikeFormGroup.controls.year.errors &&
+            bikeFormGroup.controls.year.errors?.invalidYear &&
+            (bikeFormGroup.controls.year.dirty || bikeFormGroup.controls.year.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.year-invalid" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.make" | translate }}</mat-label>
           <mat-select formControlName="make">
-            <mat-option *ngFor="let option of BIKE_MAKES" [value]="option">{{ option }}</mat-option>
+            @for (option of BIKE_MAKES; track $index) {
+              <mat-option [value]="option">{{ option }}</mat-option>
+            }
           </mat-select>
-          <mat-error *ngIf="bikeFormGroup.controls.make.invalid &&
-                            !!bikeFormGroup.controls.make.errors &&
-                            bikeFormGroup.controls.make.errors?.required &&
-                            (bikeFormGroup.controls.make.dirty || bikeFormGroup.controls.make.touched)">
-            {{ "bike-form.field.errors.make-required" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.make.invalid &&
+            !!bikeFormGroup.controls.make.errors &&
+            bikeFormGroup.controls.make.errors?.required &&
+            (bikeFormGroup.controls.make.dirty || bikeFormGroup.controls.make.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.make-required" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.model" | translate }}</mat-label>
           <input matInput formControlName="model">
-          <mat-error *ngIf="bikeFormGroup.controls.model.invalid &&
-                            !!bikeFormGroup.controls.model.errors &&
-                            bikeFormGroup.controls.model.errors?.required &&
-                            (bikeFormGroup.controls.model.dirty || bikeFormGroup.controls.model.touched)">
-            {{ "bike-form.field.errors.model-required" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.model.invalid &&
+            !!bikeFormGroup.controls.model.errors &&
+            bikeFormGroup.controls.model.errors?.required &&
+            (bikeFormGroup.controls.model.dirty || bikeFormGroup.controls.model.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.model-required" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.description" | translate }}</mat-label>
           <input matInput formControlName="description">
-          <mat-error *ngIf="bikeFormGroup.controls.description.invalid &&
-                            !!bikeFormGroup.controls.description.errors &&
-                            bikeFormGroup.controls.description.errors?.required &&
-                            (bikeFormGroup.controls.description.dirty || bikeFormGroup.controls.description.touched)">
-            {{ "bike-form.field.errors.description-required" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.description.invalid &&
+            !!bikeFormGroup.controls.description.errors &&
+            bikeFormGroup.controls.description.errors?.required &&
+            (bikeFormGroup.controls.description.dirty || bikeFormGroup.controls.description.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.description-required" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.rating" | translate }}</mat-label>
           <input matInput formControlName="rating">
-          <mat-error *ngIf="bikeFormGroup.controls.rating.invalid &&
-                            !!bikeFormGroup.controls.rating.errors &&
-                            bikeFormGroup.controls.rating.errors?.required &&
-                            (bikeFormGroup.controls.rating.dirty || bikeFormGroup.controls.rating.touched)">
-            {{ "bike-form.field.errors.rating-required" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.rating.invalid &&
+            !!bikeFormGroup.controls.rating.errors &&
+            bikeFormGroup.controls.rating.errors?.required &&
+            (bikeFormGroup.controls.rating.dirty || bikeFormGroup.controls.rating.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.rating-required" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.price" | translate }}</mat-label>
           <input matInput formControlName="price" prefix="$" mask="separator" thousandSeparator=",">
-          <mat-error *ngIf="bikeFormGroup.controls.price.invalid &&
-                            !!bikeFormGroup.controls.price.errors &&
-                            bikeFormGroup.controls.price.errors?.required &&
-                            (bikeFormGroup.controls.price.dirty || bikeFormGroup.controls.price.touched)">
-            {{ "bike-form.field.errors.price-required" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.price.invalid &&
+            !!bikeFormGroup.controls.price.errors &&
+            bikeFormGroup.controls.price.errors?.required &&
+            (bikeFormGroup.controls.price.dirty || bikeFormGroup.controls.price.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.price-required" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.quantity" | translate }}</mat-label>
           <input matInput type="number" formControlName="quantity">
-          <mat-error *ngIf="bikeFormGroup.controls.quantity.invalid &&
-                            !!bikeFormGroup.controls.quantity.errors &&
-                            bikeFormGroup.controls.quantity.errors?.required &&
-                            (bikeFormGroup.controls.quantity.dirty || bikeFormGroup.controls.quantity.touched)">
-            {{ "bike-form.field.errors.quantity-required" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.quantity.invalid &&
+            !!bikeFormGroup.controls.quantity.errors &&
+            bikeFormGroup.controls.quantity.errors?.required &&
+            (bikeFormGroup.controls.quantity.dirty || bikeFormGroup.controls.quantity.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.quantity-required" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ "bike-form.field.labels.category" | translate }}</mat-label>
           <mat-select formControlName="category">
-            <mat-option *ngFor="let option of BIKE_CATEGORIES" [value]="option">{{ option }}</mat-option>
+            @for (option of BIKE_CATEGORIES; track $index) {
+              <mat-option [value]="option">{{ option }}</mat-option>
+            }
           </mat-select>
-          <mat-error *ngIf="bikeFormGroup.controls.category.invalid &&
-                            !!bikeFormGroup.controls.category.errors &&
-                            bikeFormGroup.controls.category.errors?.required &&
-                            (bikeFormGroup.controls.category.dirty || bikeFormGroup.controls.category.touched)">
-            {{ "bike-form.field.errors.category-required" | translate }}
-          </mat-error>
+          @if (
+            bikeFormGroup.controls.category.invalid &&
+            !!bikeFormGroup.controls.category.errors &&
+            bikeFormGroup.controls.category.errors?.required &&
+            (bikeFormGroup.controls.category.dirty || bikeFormGroup.controls.category.touched)
+          ) {
+            <mat-error>
+              {{ "bike-form.field.errors.category-required" | translate }}
+            </mat-error>
+          }
         </mat-form-field>
       </div>
 
       <div class="buttons">
         <div>
           <button mat-raised-button color="primary" type="submit" style="margin-right: 10px">{{ "bike-form.button." + primaryButtonName | translate }}</button>
-          <button mat-raised-button color="primary" *ngIf="(currentPage$ | async) === page.VIEW_BIKE" (click)="onTertiaryEvent()" type="button">{{ "bike-form.button." + tertiaryButtonName | translate }}</button>
+          @if ((currentPage$ | async) === page.VIEW_BIKE) {
+            <button mat-raised-button color="primary" (click)="onTertiaryEvent()" type="button">{{ "bike-form.button." + tertiaryButtonName | translate }}</button>
+          }
         </div>
-        <button mat-raised-button color="secondary" *ngIf="showSecondaryButton" (click)="onCancel()" type="button">{{ "bike-form.button.cancel" | translate }}</button>
+        @if (showSecondaryButton) {
+          <button mat-raised-button color="secondary" (click)="onCancel()" type="button">{{ "bike-form.button.cancel" | translate }}</button>
+        }
       </div>
     </form>
   </mat-card>

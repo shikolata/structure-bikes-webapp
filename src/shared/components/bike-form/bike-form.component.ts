@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -21,7 +21,19 @@ import { CarouselComponent } from '../carousel/carousel.component';
     templateUrl: './bike-form.component.html',
     styleUrls: ['./bike-form.component.scss'],
     standalone: true,
-    imports: [CarouselComponent, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf, MatSelectModule, NgFor, MatOptionModule, NgxMaskModule, MatButtonModule, AsyncPipe, TranslateModule]
+    imports: [
+      CarouselComponent,
+      MatCardModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSelectModule,
+      MatOptionModule,
+      NgxMaskModule,
+      MatButtonModule,
+      AsyncPipe,
+      TranslateModule
+    ]
 })
 export class BikeFormComponent implements OnInit, OnChanges {
   private formBuilder: UntypedFormBuilder = inject(UntypedFormBuilder);

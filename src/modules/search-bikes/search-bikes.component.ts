@@ -10,7 +10,7 @@ import {first, map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {DialogService} from "../../shared/services/dialog.service";
 import { TranslateModule } from '@ngx-translate/core';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { WeatherWidgetComponent } from '../../shared/components/weather-widget/weather-widget.component';
@@ -24,7 +24,20 @@ import { LanguageSelectorComponent } from '../../shared/components/language-sele
     templateUrl: './search-bikes.component.html',
     styleUrls: ['./search-bikes.component.scss'],
     standalone: true,
-    imports: [LanguageSelectorComponent, NavigationComponent, MatFormFieldModule, MatInputModule, WeatherWidgetComponent, MatTableModule, MatSortModule, MatButtonModule, MatIconModule, NgIf, MatPaginatorModule, AsyncPipe, TranslateModule]
+    imports: [
+      LanguageSelectorComponent,
+      NavigationComponent,
+      MatFormFieldModule,
+      MatInputModule,
+      WeatherWidgetComponent,
+      MatTableModule,
+      MatSortModule,
+      MatButtonModule,
+      MatIconModule,
+      MatPaginatorModule,
+      AsyncPipe,
+      TranslateModule
+    ]
 })
 export class SearchBikesComponent implements OnInit, OnDestroy {
   private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);

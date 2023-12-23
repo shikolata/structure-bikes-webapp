@@ -6,14 +6,14 @@ import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-language-selector',
     templateUrl: './language-selector.component.html',
     styleUrls: ['./language-selector.component.scss'],
     standalone: true,
-    imports: [NgIf, MatFormFieldModule, MatSelectModule, NgFor, MatOptionModule, AsyncPipe, TranslateModule]
+    imports: [MatFormFieldModule, MatSelectModule, MatOptionModule, AsyncPipe, TranslateModule]
 })
 export class LanguageSelectorComponent {
   private translateService: TranslateService = inject(TranslateService);
