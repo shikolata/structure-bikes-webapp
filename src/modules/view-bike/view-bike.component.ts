@@ -5,11 +5,15 @@ import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {EMPTY_BIKE_FORM, Page} from "../../shared/constants";
 import {ActivatedRoute, Router} from "@angular/router";
 import {first, map} from "rxjs/operators";
+import { BikeFormComponent } from '../../shared/components/bike-form/bike-form.component';
+import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 
 @Component({
-  selector: 'app-view-bike',
-  templateUrl: './view-bike.component.html',
-  styleUrls: ['./view-bike.component.scss']
+    selector: 'app-view-bike',
+    templateUrl: './view-bike.component.html',
+    styleUrls: ['./view-bike.component.scss'],
+    standalone: true,
+    imports: [NavigationComponent, BikeFormComponent]
 })
 export class ViewBikeComponent implements OnInit, OnDestroy {
   viewBikeForm: BikeForm;

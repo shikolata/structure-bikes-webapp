@@ -3,11 +3,15 @@ import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {Bike, BikeForm} from "../../shared/models/bike";
 import {EMPTY_BIKE, EMPTY_BIKE_FORM, Page} from "../../shared/constants";
 import {UntypedFormGroup} from "@angular/forms";
+import { BikeFormComponent } from '../../shared/components/bike-form/bike-form.component';
+import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 
 @Component({
-  selector: 'app-add-bike',
-  templateUrl: './add-bike.component.html',
-  styleUrls: ['./add-bike.component.scss']
+    selector: 'app-add-bike',
+    templateUrl: './add-bike.component.html',
+    styleUrls: ['./add-bike.component.scss'],
+    standalone: true,
+    imports: [NavigationComponent, BikeFormComponent]
 })
 export class AddBikeComponent implements OnInit {
   addBikeForm: BikeForm;

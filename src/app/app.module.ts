@@ -47,56 +47,54 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SearchBikesComponent,
-    AddBikeComponent,
-    BikeFormComponent,
-    ViewBikeComponent,
-    EditBikeComponent,
-    NavigationComponent,
-    GalleryComponent,
-    EditGalleryComponent,
-    LanguageSelectorComponent,
-    ConfirmDialogComponent,
-    CarouselComponent,
-    WeatherWidgetComponent
-  ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatSortModule,
-    StoreModule.forRoot({bikes: bikesReducer}, {}),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      // logOnly: environment.production, // Restrict extension to log-only mode
-    }),
-    EffectsModule.forRoot([StructureBikesEffects]),
-    ReactiveFormsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatMenuModule,
-    MatDialogModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    MatSelectModule,
-    NgxMaskModule.forRoot(),
-    SlickCarouselModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatPaginatorModule,
+        MatSortModule,
+        StoreModule.forRoot({ bikes: bikesReducer }, {}),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+            // logOnly: environment.production, // Restrict extension to log-only mode
+        }),
+        EffectsModule.forRoot([StructureBikesEffects]),
+        ReactiveFormsModule,
+        MatCardModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatMenuModule,
+        MatDialogModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        MatSelectModule,
+        NgxMaskModule.forRoot(),
+        SlickCarouselModule,
+        SearchBikesComponent,
+        AddBikeComponent,
+        BikeFormComponent,
+        ViewBikeComponent,
+        EditBikeComponent,
+        NavigationComponent,
+        GalleryComponent,
+        EditGalleryComponent,
+        LanguageSelectorComponent,
+        ConfirmDialogComponent,
+        CarouselComponent,
+        WeatherWidgetComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

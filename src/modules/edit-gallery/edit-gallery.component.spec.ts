@@ -8,8 +8,8 @@ describe('EditGalleryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditGalleryComponent ]
-    })
+    imports: [EditGalleryComponent]
+})
     .compileComponents();
   });
 

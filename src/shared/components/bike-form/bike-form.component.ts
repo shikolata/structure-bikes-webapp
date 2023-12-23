@@ -3,13 +3,25 @@ import {BikeForm} from "../../models/bike";
 import {Observable} from "rxjs";
 import {BIKE_CATEGORIES, BIKE_MAKES, Page} from "../../constants";
 import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import {BikeFormValidators} from "./bike-form.validators";
+import { TranslateModule } from '@ngx-translate/core';
+import { MatButtonModule } from '@angular/material/button';
+import { NgxMaskModule } from 'ngx-mask';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { CarouselComponent } from '../carousel/carousel.component';
 
 @Component({
-  selector: 'app-bike-form',
-  templateUrl: './bike-form.component.html',
-  styleUrls: ['./bike-form.component.scss']
+    selector: 'app-bike-form',
+    templateUrl: './bike-form.component.html',
+    styleUrls: ['./bike-form.component.scss'],
+    standalone: true,
+    imports: [CarouselComponent, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf, MatSelectModule, NgFor, MatOptionModule, NgxMaskModule, MatButtonModule, AsyncPipe, TranslateModule]
 })
 export class BikeFormComponent implements OnInit, OnChanges {
   @Input()

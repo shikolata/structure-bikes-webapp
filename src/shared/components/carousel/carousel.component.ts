@@ -2,11 +2,16 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {Bike} from "../../models/bike";
 import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MatCardModule } from '@angular/material/card';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-carousel',
-  templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+    selector: 'app-carousel',
+    templateUrl: './carousel.component.html',
+    styleUrls: ['./carousel.component.scss'],
+    standalone: true,
+    imports: [NgIf, MatCardModule, SlickCarouselModule, NgFor, AsyncPipe]
 })
 export class CarouselComponent implements OnInit {
   selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;

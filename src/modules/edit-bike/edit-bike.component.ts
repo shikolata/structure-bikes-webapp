@@ -6,11 +6,15 @@ import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {ActivatedRoute, Router} from "@angular/router";
 import {first, map} from "rxjs/operators";
 import {UntypedFormGroup} from "@angular/forms";
+import { BikeFormComponent } from '../../shared/components/bike-form/bike-form.component';
+import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 
 @Component({
-  selector: 'app-edit-bike',
-  templateUrl: './edit-bike.component.html',
-  styleUrls: ['./edit-bike.component.scss']
+    selector: 'app-edit-bike',
+    templateUrl: './edit-bike.component.html',
+    styleUrls: ['./edit-bike.component.scss'],
+    standalone: true,
+    imports: [NavigationComponent, BikeFormComponent]
 })
 export class EditBikeComponent implements OnInit, OnDestroy {
   editBikeForm: BikeForm;
