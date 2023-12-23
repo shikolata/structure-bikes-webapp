@@ -25,9 +25,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app/app-routing.module';
+import { routes } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { withInterceptorsFromDi, provideHttpClient, HttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -42,7 +43,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
       BrowserModule,
-      AppRoutingModule,
       MatTableModule,
       MatFormFieldModule,
       MatInputModule,
@@ -73,7 +73,8 @@ bootstrapApplication(AppComponent, {
       SlickCarouselModule
     ),
     provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations()
+    provideAnimations(),
+    provideRouter(routes),
   ]
 })
   .catch(err => console.error(err));
