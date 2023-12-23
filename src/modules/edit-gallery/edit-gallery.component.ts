@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
 import {Page} from "../../shared/constants";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {HttpEventType} from "@angular/common/http";
 import {Bike} from "../../shared/models/bike";
@@ -19,7 +19,7 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
     imports: [NavigationComponent, GalleryComponent, NgIf, MatButtonModule, NgStyle, AsyncPipe]
 })
 export class EditGalleryComponent implements OnInit {
-  bikeId: string;
+  @Input('id') bikeId: string;
   selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
@@ -30,14 +30,12 @@ export class EditGalleryComponent implements OnInit {
   page = Page;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private imageService: ImageService,
     private structureBikesFacade: StructureBikesFacade) {}
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.EDIT_GALLERY);
-    this.bikeId = this.route.snapshot.paramMap.get('id');
     this.structureBikesFacade.updateSelectedBike(+this.bikeId);
   }
 
@@ -73,9 +71,8 @@ export class EditGalleryComponent implements OnInit {
 
       if (file) {
         this.currentFile = file;
-        const bikeId = this.route.snapshot.paramMap.get('id');
 
-        this.imageService.addImage(bikeId, this.currentFile).subscribe({
+        this.imageService.addImage(this.bikeId, this.currentFile).subscribe({
           next: (event: any) => {
             if (event?.type === HttpEventType.UploadProgress) {
               this.progress = Math.round((100 * event.loaded) / event.total);

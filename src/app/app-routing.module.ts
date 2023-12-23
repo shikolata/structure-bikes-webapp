@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import {SearchBikesComponent} from "../modules/search-bikes/search-bikes.component";
 import {AddBikeComponent} from "../modules/add-bike/add-bike.component";
 import {ViewBikeComponent} from "../modules/view-bike/view-bike.component";
-import {EditBikeComponent} from "../modules/edit-bike/edit-bike.component";
 import {EditGalleryComponent} from "../modules/edit-gallery/edit-gallery.component";
 
  export const routes: Routes = [

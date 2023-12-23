@@ -28,7 +28,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { withInterceptorsFromDi, provideHttpClient, HttpClient } from '@angular/common/http';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -74,7 +74,7 @@ bootstrapApplication(AppComponent, {
     ),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
   ]
 })
   .catch(err => console.error(err));

@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Bike, BikeForm} from "../../shared/models/bike";
 import {Observable, skipWhile, Subscription} from "rxjs";
 import {EMPTY_BIKE_FORM, Page} from "../../shared/constants";
 import {StructureBikesFacade} from "../../store/structure-bikes.facade";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {first, map} from "rxjs/operators";
 import {UntypedFormGroup} from "@angular/forms";
 import { BikeFormComponent } from '../../shared/components/bike-form/bike-form.component';
@@ -17,21 +17,19 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
     imports: [NavigationComponent, BikeFormComponent]
 })
 export class EditBikeComponent implements OnInit, OnDestroy {
+  @Input('id') bikeId: string;
   editBikeForm: BikeForm;
   selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;
-  bikeId: string;
   page = Page;
   selectedBikeSubscription: Subscription;
 
   constructor(private structureBikesFacade: StructureBikesFacade,
-              private route: ActivatedRoute,
               private router: Router) {
     this.editBikeForm = EMPTY_BIKE_FORM;
   }
 
   ngOnInit(): void {
     this.structureBikesFacade.setCurrentPage(Page.EDIT_BIKE);
-    this.bikeId = this.route.snapshot.paramMap.get('id');
     this.structureBikesFacade.updateSelectedBike(+this.bikeId);
     this.selectedBikeSubscription = this.selectedBike$.pipe(
       skipWhile((selectedBike: Bike) => !selectedBike || selectedBike.id.toString() !== this.bikeId),
