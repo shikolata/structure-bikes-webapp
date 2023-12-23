@@ -29,6 +29,7 @@ import { routes } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { withInterceptorsFromDi, provideHttpClient, HttpClient } from '@angular/common/http';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { appConfig } from './app/app.config';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -39,42 +40,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    importProvidersFrom(
-      BrowserModule,
-      MatTableModule,
-      MatFormFieldModule,
-      MatInputModule,
-      MatPaginatorModule,
-      MatSortModule,
-      StoreModule.forRoot({ bikes: bikesReducer }, {}),
-      StoreDevtoolsModule.instrument({
-        maxAge: 25, // Retains last 25 states
-        // logOnly: environment.production, // Restrict extension to log-only mode
-      }),
-      EffectsModule.forRoot([StructureBikesEffects]),
-      ReactiveFormsModule,
-      MatCardModule,
-      MatButtonModule,
-      MatToolbarModule,
-      MatIconModule,
-      MatMenuModule,
-      MatDialogModule,
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-        }
-      }),
-      MatSelectModule,
-      NgxMaskModule.forRoot(),
-      SlickCarouselModule
-    ),
-    provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations(),
-    provideRouter(routes, withComponentInputBinding()),
-  ]
-})
+bootstrapApplication(AppComponent, appConfig)
   .catch(err => console.error(err));
