@@ -1,5 +1,5 @@
 <div class="nav">
-  <app-navigation></app-navigation>
+  <app-navigation/>
 </div>
 
 <app-bike-form
@@ -7,5 +7,4 @@
   primaryButtonName="save-bike"
   [showSecondaryButton]="true"
   (submission)="onSubmit($event)"
-  (formCancel)="onCancel()">
-</app-bike-form>
+  (formCancel)="onCancel()"/>

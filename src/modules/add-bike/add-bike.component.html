@@ -1,9 +1,8 @@
 <div class="nav">
-  <app-navigation></app-navigation>
+  <app-navigation/>
 </div>
 
 <app-bike-form
   [bikeForm]="addBikeForm"
   [primaryButtonName]="page.ADD_BIKE"
-  (submission)="onSubmit($event)">
-</app-bike-form>
+  (submission)="onSubmit($event)"/>

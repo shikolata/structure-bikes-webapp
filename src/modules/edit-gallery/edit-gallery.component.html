@@ -1,10 +1,10 @@
 <div class="nav">
-  <app-navigation></app-navigation>
+  <app-navigation/>
 </div>
 
 <app-gallery
   [isDeleteAvailable]="true"
-  (galleryDelete)="delete($event)"></app-gallery>
+  (galleryDelete)="delete($event)"/>
 
 <div *ngIf="(currentPage$ | async) === page.EDIT_GALLERY" class="centered">
   <input type="file" accept="image/*" (change)="selectFile($event)" style="display: none"  #fileUpload />
