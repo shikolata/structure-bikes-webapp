@@ -1,20 +1,19 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, Signal, SimpleChanges, inject} from '@angular/core';
 import {BikeForm} from "../../models/bike";
-import {Observable} from "rxjs";
 import {BIKE_CATEGORIES, BIKE_MAKES, Page} from "../../constants";
-import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
-import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
+import { Validators, ReactiveFormsModule, FormBuilder, FormGroup } from "@angular/forms";
 import {BikeFormValidators} from "./bike-form.validators";
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { AsyncPipe } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { StructureBikesStore } from 'src/store/sturucture-bikes.store';
+import { SignalStoreProps } from '@ngrx/signals/src/signal-store-models';
 
 @Component({
     selector: 'app-bike-form',
@@ -31,13 +30,12 @@ import { CarouselComponent } from '../carousel/carousel.component';
       MatOptionModule,
       NgxMaskModule,
       MatButtonModule,
-      AsyncPipe,
       TranslateModule
     ]
 })
 export class BikeFormComponent implements OnInit, OnChanges {
-  private formBuilder: UntypedFormBuilder = inject(UntypedFormBuilder);
-  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+  private structureBikesStore: SignalStoreProps<any> = inject(StructureBikesStore);
+  private formBuilder: FormBuilder = inject(FormBuilder);
 
   @Input()
   bikeForm: BikeForm;
@@ -63,9 +61,9 @@ export class BikeFormComponent implements OnInit, OnChanges {
   @Output()
   tertiaryEvent = new EventEmitter();
 
-  currentPage$: Observable<Page> = this.structureBikesFacade.currentPage$;
+  currentPage: Signal<Page> = this.structureBikesStore.currentPage;
   page = Page;
-  bikeFormGroup: UntypedFormGroup;
+  bikeFormGroup: FormGroup;
 
   readonly BIKE_CATEGORIES = BIKE_CATEGORIES;
   readonly BIKE_MAKES = BIKE_MAKES;

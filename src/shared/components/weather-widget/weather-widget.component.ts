@@ -1,23 +1,22 @@
-import { Component, OnInit, inject } from '@angular/core';
-import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
-import {Observable} from "rxjs";
+import { Component, OnInit, Signal, inject } from '@angular/core';
 import {Weather} from "../../models/weather";
 import { TranslateModule } from '@ngx-translate/core';
-import { AsyncPipe } from '@angular/common';
+import { StructureBikesStore } from 'src/store/sturucture-bikes.store';
+import { SignalStoreProps } from '@ngrx/signals/src/signal-store-models';
 
 @Component({
     selector: 'app-weather-widget-main',
     templateUrl: './weather-widget.component.html',
     styleUrls: ['./weather-widget.component.css'],
     standalone: true,
-    imports: [AsyncPipe, TranslateModule]
+    imports: [TranslateModule]
 })
 export class WeatherWidgetComponent implements OnInit {
-  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+  private structureBikesStore: SignalStoreProps<any> = inject(StructureBikesStore);
 
-  weather$: Observable<Weather> = this.structureBikesFacade.weather$;
+  weather: Signal<Weather> = this.structureBikesStore.weather;
 
   ngOnInit() {
-    this.structureBikesFacade.viewWeather();
+    this.structureBikesStore.viewWeather();
   }
 }

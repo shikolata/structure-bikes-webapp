@@ -1,4 +1,4 @@
-@if ((currentPage$ | async) === page.SEARCH_BIKES) {
+@if (currentPage() === page.SEARCH_BIKES) {
   <mat-form-field>
     <mat-label>
       {{ 'language-selector.select-language' | translate }}

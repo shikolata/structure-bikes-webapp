@@ -1,7 +1,7 @@
 <div class="centered">
-  @if ((selectedBike$ | async)?.images?.length > 0) {
+  @if (selectedBike()?.images?.length > 0) {
     <div>{{ 'gallery.images-list' | translate }}</div>
-    @for (image of (selectedBike$ | async)?.images; track $index) {
+    @for (image of selectedBike()?.images; track $index) {
       <p><a href="{{ image?.url }}">{{ image.imageName }}</a></p>
       <img src="{{ image?.url }}" alt="{{ image?.imageName }}" height="80px" />
       @if (isDeleteAvailable) {

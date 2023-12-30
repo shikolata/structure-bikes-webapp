@@ -1,22 +1,21 @@
-import {Component, Input, OnInit, inject} from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, Signal, inject} from '@angular/core';
 import {Bike} from "../../models/bike";
-import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MatCardModule } from '@angular/material/card';
-import { AsyncPipe } from '@angular/common';
+import { StructureBikesStore } from 'src/store/sturucture-bikes.store';
+import { SignalStoreProps } from '@ngrx/signals/src/signal-store-models';
 
 @Component({
     selector: 'app-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.scss'],
     standalone: true,
-    imports: [MatCardModule, SlickCarouselModule, AsyncPipe]
+    imports: [MatCardModule, SlickCarouselModule]
 })
 export class CarouselComponent {
-  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+  private structureBikesStore: SignalStoreProps<any> = inject(StructureBikesStore);
 
-  selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;
+  selectedBike: Signal<Bike> = this.structureBikesStore.selectedBike;
 
   slideConfig = {
     slidesToShow: 4,

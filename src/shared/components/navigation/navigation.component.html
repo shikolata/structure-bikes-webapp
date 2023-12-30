@@ -1,15 +1,15 @@
 <div style="display: flex">
   <mat-toolbar class="centered">
-    <span>{{ "navigation." + (currentPage$ | async) | translate }}</span>
+    <span>{{ "navigation." + currentPage() | translate }}</span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item disabled="{{(currentPage$ | async) === page.SEARCH_BIKES}}" [routerLink]="['/search-bikes']">
+      <button mat-menu-item disabled="{{currentPage() === page.SEARCH_BIKES}}" [routerLink]="['/search-bikes']">
         <mat-icon>search</mat-icon>
         <span>{{ 'navigation.search-bikes' | translate }}</span>
       </button>
-      <button mat-menu-item disabled="{{(currentPage$ | async) === page.ADD_BIKE}}" [routerLink]="['/add-bike']">
+      <button mat-menu-item disabled="{{currentPage() === page.ADD_BIKE}}" [routerLink]="['/add-bike']">
         <mat-icon>add_circle</mat-icon>
         <span>{{ 'navigation.add-bike' | translate }}</span>
       </button>

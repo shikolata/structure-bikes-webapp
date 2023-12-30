@@ -6,7 +6,7 @@
   [isDeleteAvailable]="true"
   (galleryDelete)="delete($event)"/>
 
-@if ((currentPage$ | async) === page.EDIT_GALLERY) {
+@if (currentPage() === page.EDIT_GALLERY) {
   <div class="centered">
     <input type="file" accept="image/*" (change)="selectFile($event)" style="display: none"  #fileUpload />
     <button mat-raised-button color="basic" type="button"

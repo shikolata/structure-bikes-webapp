@@ -1,21 +1,20 @@
-import {Component, EventEmitter, Input, Output, inject} from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, EventEmitter, Input, Output, Signal, effect, inject} from '@angular/core';
 import {Bike} from "../../models/bike";
-import {StructureBikesFacade} from "../../../store/structure-bikes.facade";
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { AsyncPipe } from '@angular/common';
+import { StructureBikesStore } from 'src/store/sturucture-bikes.store';
+import { SignalStoreProps } from '@ngrx/signals/src/signal-store-models';
 
 @Component({
     selector: 'app-gallery',
     templateUrl: './gallery.component.html',
     styleUrls: ['./gallery.component.scss'],
     standalone: true,
-    imports: [MatButtonModule, MatIconModule, AsyncPipe, TranslateModule]
+    imports: [MatButtonModule, MatIconModule, TranslateModule]
 })
 export class GalleryComponent {
-  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+  private structureBikesStore: SignalStoreProps<any> = inject(StructureBikesStore);
   
   @Input()
   isDeleteAvailable = false;
@@ -23,7 +22,7 @@ export class GalleryComponent {
   @Output()
   galleryDelete = new EventEmitter<string>();
 
-  selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;
+  selectedBike: Signal<Bike> = this.structureBikesStore.selectedBike;
 
   onDelete(imageName: string): void {
     this.galleryDelete.emit(imageName);

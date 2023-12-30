@@ -25,7 +25,7 @@ export class ImageService {
     reportProgress: true,
   };
   // HttpClient API post() method => Create Image
-  addImage(bikeId: string, image: File): Observable<any> {
+  addImage(bikeId: string, image: File): Observable<Bike> {
     const formData: FormData = new FormData();
 
     formData.append('id', bikeId);
@@ -39,7 +39,7 @@ export class ImageService {
       .pipe(retry(1), catchError(this.handleError));
   }
   // HttpClient API delete() method => Delete Image
-  deleteImage(bikeId: string, imageName: string): Observable<any> {
+  deleteImage(bikeId: string, imageName: string): Observable<Bike> {
     const options = {
       ...this.httpOptions,
       body: {

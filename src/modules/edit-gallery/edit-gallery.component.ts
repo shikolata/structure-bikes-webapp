@@ -1,28 +1,28 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
-import {Observable} from "rxjs";
+import { Component, Input, OnInit, Signal, inject } from '@angular/core';
 import {Page} from "../../shared/constants";
 import {Router} from "@angular/router";
-import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {HttpEventType} from "@angular/common/http";
 import {Bike} from "../../shared/models/bike";
 import {ImageService} from "../../shared/services/image.service";
 import { MatButtonModule } from '@angular/material/button';
-import { NgStyle, AsyncPipe } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { GalleryComponent } from '../../shared/components/gallery/gallery.component';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
+import { SignalStoreProps } from '@ngrx/signals/src/signal-store-models';
+import { StructureBikesStore } from 'src/store/sturucture-bikes.store';
 
 @Component({
     selector: 'app-edit-gallery',
     templateUrl: './edit-gallery.component.html',
     styleUrls: ['./edit-gallery.component.scss'],
     standalone: true,
-    imports: [NavigationComponent, GalleryComponent, MatButtonModule, NgStyle, AsyncPipe]
+    imports: [NavigationComponent, GalleryComponent, MatButtonModule, NgStyle]
 })
 export class EditGalleryComponent implements OnInit {
+  private structureBikesStore: SignalStoreProps<any> = inject(StructureBikesStore);  
   private router: Router = inject(Router);
   private imageService: ImageService = inject(ImageService);
-  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
-
+  
   @Input('id') bikeId: string;
 
   selectedFiles?: FileList;
@@ -31,12 +31,12 @@ export class EditGalleryComponent implements OnInit {
   message = '';
   preview = '';
 
-  currentPage$: Observable<Page> = this.structureBikesFacade.currentPage$;
+  currentPage: Signal<Page> = this.structureBikesStore.currentPage;
   page = Page;
 
   ngOnInit(): void {
-    this.structureBikesFacade.setCurrentPage(Page.EDIT_GALLERY);
-    this.structureBikesFacade.updateSelectedBike(+this.bikeId);
+    this.structureBikesStore.setCurrentPage(Page.EDIT_GALLERY);
+    this.structureBikesStore.updateSelectedBike(+this.bikeId);
   }
 
   selectFile(event: any): void {
@@ -78,7 +78,7 @@ export class EditGalleryComponent implements OnInit {
               this.progress = Math.round((100 * event.loaded) / event.total);
             } else {
               const selectedBike = event as Bike;
-              this.structureBikesFacade.setSelectedBike(selectedBike);
+              this.structureBikesStore.setSelectedBike(selectedBike);
               this.selectedFiles = undefined;
               this.currentFile = undefined;
               this.preview = '';
@@ -105,7 +105,7 @@ export class EditGalleryComponent implements OnInit {
     this.imageService.deleteImage(this.bikeId, imageName).subscribe({
       next: (event: any) => {
         const selectedBike = event as Bike;
-        this.structureBikesFacade.setSelectedBike(selectedBike);
+        this.structureBikesStore.setSelectedBike(selectedBike);
       },
       error: (err: any) => {
         console.log(err);

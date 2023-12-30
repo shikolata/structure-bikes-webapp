@@ -16,16 +16,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgxMaskModule } from 'ngx-mask';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { HttpLoaderFactory } from 'src/main';
-import { StructureBikesEffects } from 'src/store/structure-bikes.effects';
-import { bikesReducer } from 'src/store/structure-bikes.reducer';
 import { routes } from './app-routing.module';
+import { provideStore } from '@ngrx/store';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -36,12 +37,6 @@ export const appConfig: ApplicationConfig = {
       MatInputModule,
       MatPaginatorModule,
       MatSortModule,
-      StoreModule.forRoot({ bikes: bikesReducer }, {}),
-      StoreDevtoolsModule.instrument({
-        maxAge: 25, // Retains last 25 states
-        // logOnly: environment.production, // Restrict extension to log-only mode
-      }),
-      EffectsModule.forRoot([StructureBikesEffects]),
       ReactiveFormsModule,
       MatCardModule,
       MatButtonModule,
@@ -63,5 +58,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
     provideRouter(routes, withComponentInputBinding()),
+    provideStore(),
+    provideStoreDevtools({
+      maxAge: 25, // Retains last 25 states
+      // logOnly: environment.production, // Restrict extension to log-only mode
+    })
   ]
 };

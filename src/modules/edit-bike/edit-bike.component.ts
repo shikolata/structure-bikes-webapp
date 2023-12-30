@@ -1,13 +1,12 @@
-import {Component, Input, OnDestroy, OnInit, inject} from '@angular/core';
+import {Component, Input, OnInit, Signal, effect, inject} from '@angular/core';
 import {Bike, BikeForm} from "../../shared/models/bike";
-import {Observable, skipWhile, Subscription} from "rxjs";
 import {EMPTY_BIKE_FORM, Page} from "../../shared/constants";
-import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {Router} from "@angular/router";
-import {first, map} from "rxjs/operators";
 import {UntypedFormGroup} from "@angular/forms";
 import { BikeFormComponent } from '../../shared/components/bike-form/bike-form.component';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
+import { StructureBikesStore } from 'src/store/sturucture-bikes.store';
+import { SignalStoreProps } from '@ngrx/signals/src/signal-store-models';
 
 @Component({
     selector: 'app-edit-bike',
@@ -16,27 +15,25 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
     standalone: true,
     imports: [NavigationComponent, BikeFormComponent]
 })
-export class EditBikeComponent implements OnInit, OnDestroy {
-  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade)
+export class EditBikeComponent implements OnInit {
+  private structureBikesStore: SignalStoreProps<any> = inject(StructureBikesStore);  
   private router: Router = inject(Router);
 
   @Input('id') bikeId: string;
 
   editBikeForm: BikeForm = EMPTY_BIKE_FORM;
-  selectedBike$: Observable<Bike> = this.structureBikesFacade.selectedBike$;
+  selectedBike: Signal<Bike> = this.structureBikesStore.selectedBike;
   page = Page;
-  selectedBikeSubscription: Subscription;
+
+  effect = effect(() => {
+    if(this.selectedBike()?.id.toString() === this.bikeId) {
+      this.setEditBikeForm(this.selectedBike());
+    }
+  });
 
   ngOnInit(): void {
-    this.structureBikesFacade.setCurrentPage(Page.EDIT_BIKE);
-    this.structureBikesFacade.updateSelectedBike(+this.bikeId);
-    this.selectedBikeSubscription = this.selectedBike$.pipe(
-      skipWhile((selectedBike: Bike) => !selectedBike || selectedBike.id.toString() !== this.bikeId),
-      first(),
-      map((selectedBike: Bike) => {
-        this.setEditBikeForm(selectedBike);
-      })
-    ).subscribe();
+    this.structureBikesStore.setCurrentPage(Page.EDIT_BIKE);
+    this.structureBikesStore.updateSelectedBike(+this.bikeId);
   }
 
   setEditBikeForm(bike: Bike): void {
@@ -62,14 +59,10 @@ export class EditBikeComponent implements OnInit, OnDestroy {
     rawForm.id = Number(this.bikeId);
     const editedBike: Bike = rawForm as Bike;
 
-    this.structureBikesFacade.editBike(editedBike);
+    this.structureBikesStore.editBike(editedBike);
   }
 
   onCancel(): void {
     this.router.navigate(['/view-bike', { id: this.bikeId }]);
-  }
-
-  ngOnDestroy() {
-    this.selectedBikeSubscription.unsubscribe();
   }
 }

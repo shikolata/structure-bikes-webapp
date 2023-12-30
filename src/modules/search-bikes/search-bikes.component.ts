@@ -1,16 +1,12 @@
-import {Component, OnDestroy, OnInit, ViewChild, inject} from '@angular/core';
+import {Component, OnInit, Signal, ViewChild, effect, inject} from '@angular/core';
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import {Bike} from "../../shared/models/bike";
 import { MatSort, MatSortModule } from "@angular/material/sort";
 import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
-import {StructureBikesFacade} from "../../store/structure-bikes.facade";
 import {Page} from "../../shared/constants";
-import {Observable, skipWhile, Subscription} from "rxjs";
-import {first, map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {DialogService} from "../../shared/services/dialog.service";
 import { TranslateModule } from '@ngx-translate/core';
-import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { WeatherWidgetComponent } from '../../shared/components/weather-widget/weather-widget.component';
@@ -18,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { LanguageSelectorComponent } from '../../shared/components/language-selector/language-selector.component';
+import { SignalStoreProps } from '@ngrx/signals/src/signal-store-models';
+import { StructureBikesStore } from 'src/store/sturucture-bikes.store';
 
 @Component({
     selector: 'app-search-bikes',
@@ -35,47 +33,38 @@ import { LanguageSelectorComponent } from '../../shared/components/language-sele
       MatButtonModule,
       MatIconModule,
       MatPaginatorModule,
-      AsyncPipe,
       TranslateModule
     ]
 })
-export class SearchBikesComponent implements OnInit, OnDestroy {
-  private structureBikesFacade: StructureBikesFacade = inject(StructureBikesFacade);
+export class SearchBikesComponent implements OnInit {
+  private structureBikesStore: SignalStoreProps<any> = inject(StructureBikesStore);
   private router: Router = inject(Router);
   private dialogService: DialogService = inject(DialogService);
 
   displayedColumns: string[] = ['make', 'name', 'year', 'rating', 'id'];
-  bikes$: Observable<Bike[]> = this.structureBikesFacade.bikes$;
+  bikes: Signal<Bike[]> = this.structureBikesStore.bikes;
   dataSource: MatTableDataSource<Bike>;
-  bikesSubscription: Subscription;
-  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit(): void {
-    this.structureBikesFacade.setCurrentPage(Page.SEARCH_BIKES);
-    this.structureBikesFacade.incrementBikes();
+  effect = effect(() => {
+    if(this.bikes()?.length > 0) {
+      this.dataSource = new MatTableDataSource(this.bikes());
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+  });
 
-    this.bikesSubscription = this.bikes$.pipe(
-      skipWhile((bikes: Bike[]) => !bikes || bikes.length === 0),
-      map((bikes: Bike[]) => {
-        this.dataSource = new MatTableDataSource(bikes);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      })
-    ).subscribe();
+  ngOnInit(): void {
+    this.structureBikesStore.setCurrentPage(Page.SEARCH_BIKES);
+    this.structureBikesStore.incrementBikes();
   }
 
   navigateToBike(bikeId: number): void {
-    this.bikes$.pipe(
-      first(),
-      map((bikes: Bike[]) => {
-        const selectedBike: Bike | undefined = bikes.find(bike => bike.id === bikeId);
-        if(!!selectedBike) {
-          this.structureBikesFacade.setSelectedBike(selectedBike);
-        }
-      })
-    ).subscribe();
+    const selectedBike: Bike | undefined = this.bikes().find((bike: Bike) => bike.id === bikeId);
+    if(!!this.bikes()) {
+      this.structureBikesStore.setSelectedBike(selectedBike);
+    }
     this.router.navigate(['/view-bike', { id: bikeId }]);
   }
 
@@ -92,12 +81,8 @@ export class SearchBikesComponent implements OnInit, OnDestroy {
     this.dialogService.openConfirmDialog('search-bikes.delete')
       .afterClosed().subscribe(res => {
         if(res) {
-          this.structureBikesFacade.deleteBike(elementId);
+          this.structureBikesStore.deleteBike(elementId);
         }
     });
-  }
-
-  ngOnDestroy() {
-    this.bikesSubscription.unsubscribe();
   }
 }

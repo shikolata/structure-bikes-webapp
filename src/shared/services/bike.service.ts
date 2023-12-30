@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Bike } from '../models/bike';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,18 +24,21 @@ export class BikeService {
       'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT,HEAD',
     }),
   };
+
   // HttpClient API get() method => Fetch Bikes list
   getBikes(): Observable<Bike[]> {
     return this.http
       .get<Bike[]>(`${this.apiURL}/bikes/`, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
+
   // HttpClient API get() method => Fetch Bike
   getBike(id: number): Observable<Bike> {
     return this.http
       .get<Bike>(`${this.apiURL}/bikes/${id}`, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
+
   // HttpClient API post() method => Create Bike
   createBike(bike: Bike): Observable<number> {
     return this.http
@@ -46,22 +49,25 @@ export class BikeService {
       )
       .pipe(retry(1), catchError(this.handleError));
   }
+
   // HttpClient API put() method => Update Bike
-  updateBike(bike: Bike): Observable<Bike> {
+  updateBike(bike: Bike): Observable<undefined> {
     return this.http
-      .put<Bike>(
+      .put<undefined>(
         `${this.apiURL}/bikes`,
         JSON.stringify(bike),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.handleError));
   }
+
   // HttpClient API delete() method => Delete Bike
-  deleteBike(id: number) {
+  deleteBike(id: number): Observable<undefined> {
     return this.http
-      .delete<Bike>(`${this.apiURL}/bikes/${id}`, this.httpOptions)
+      .delete<undefined>(`${this.apiURL}/bikes/${id}`, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
+
   // Error handling
   handleError(error: any) {
     let errorMessage = '';

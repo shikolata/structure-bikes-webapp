@@ -1,10 +1,10 @@
-@if ((selectedBike$ | async)?.images?.length > 0) {
+@if (selectedBike().images?.length > 0) {
   <mat-card style="margin-bottom: 20px; background-color: #673ab7">
     <div style="margin: 1% 10%">
       <ngx-slick-carousel class="carousel"
                           #slickModal="slick-carousel"
                           [config]="slideConfig">
-        @for (image of (selectedBike$ | async).images; track $index) {
+        @for (image of selectedBike().images; track $index) {
           <div ngxSlickItem class="slide">
             <img src="{{ image.url }}" alt="" class="img-style">
           </div>

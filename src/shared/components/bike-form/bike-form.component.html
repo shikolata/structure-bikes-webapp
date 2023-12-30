@@ -161,7 +161,7 @@
       <div class="buttons">
         <div>
           <button mat-raised-button color="primary" type="submit" style="margin-right: 10px">{{ "bike-form.button." + primaryButtonName | translate }}</button>
-          @if ((currentPage$ | async) === page.VIEW_BIKE) {
+          @if (currentPage() === page.VIEW_BIKE) {
             <button mat-raised-button color="primary" (click)="onTertiaryEvent()" type="button">{{ "bike-form.button." + tertiaryButtonName | translate }}</button>
           }
         </div>
