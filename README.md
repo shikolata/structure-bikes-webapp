@@ -25,7 +25,15 @@ Navigate to `http://localhost:4200/`; the application will automatically reload 
 
 - Advanced/specific search filters
 - Design improvements
-- Upgrade Angular
+- Upgrade to Angular 17 ✔
+  - Components are now Standalone
+  - Edit Bike Component is now Lazy Loaded
+  - Self closing tags
+  - Route Parameter Catching using @input: id
+  - Converted to use AppConfig
+  - DI using Inject (instead of constructors)
+  - @if/@for statements in HTML (instead of directives)
+  - Signal Store 
 - Login & Registration
 
 The git repo for the BE server: https://github.com/shikolata/structure-bikes-services
