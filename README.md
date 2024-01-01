@@ -25,7 +25,7 @@ Navigate to `http://localhost:4200/`; the application will automatically reload 
 
 - Advanced/specific search filters
 - Design improvements
-  - Better Carousel
+  - Better Carousel: Bootstrap ✔
 - Upgrade to Angular 17 ✔
   - Components are now Standalone
   - Edit Bike Component is now Lazy Loaded
