@@ -1,15 +1,33 @@
 @if (selectedBike().images?.length > 0) {
   <mat-card style="margin-bottom: 20px; background-color: #673ab7">
-    <div style="margin: 1% 10%">
-      <ngx-slick-carousel class="carousel"
-                          #slickModal="slick-carousel"
-                          [config]="slideConfig">
+    <div id="galleryCarousel" class="carousel slide" style="margin: 1% 10%" data-bs-ride="carousel">
+      <div class="carousel-indicators">
         @for (image of selectedBike().images; track $index) {
-          <div ngxSlickItem class="slide">
-            <img src="{{ image.url }}" alt="" class="img-style">
+          <button 
+            type="button" 
+            data-bs-target="#galleryCarousel" 
+            attr.data-bs-slide-to="{{ $index }}" 
+            class="{{ $index === 0 ? 'active': ''}}" 
+            attr.aria-current="{{ $index === 0 }}" 
+            aria-label="Slide 1">
+          </button>
+        }
+      </div>
+      <div class="carousel-inner">
+        @for (image of selectedBike().images; track $index) {
+          <div class="carousel-item {{ $index === 0 ? 'active': ''}}" data-bs-interval="3000">
+            <img src="{{ image.url }}" alt="{{ image.imageName }}" class="d-block w-100" style="height: 400px; object-fit: contain">
           </div>
         }
-      </ngx-slick-carousel>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </mat-card>
 }

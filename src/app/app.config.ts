@@ -19,7 +19,6 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgxMaskModule } from 'ngx-mask';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { routes } from './app-routing.module';
 import { provideStore } from '@ngrx/store';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -52,8 +51,7 @@ export const appConfig: ApplicationConfig = {
         }
       }),
       MatSelectModule,
-      NgxMaskModule.forRoot(),
-      SlickCarouselModule
+      NgxMaskModule.forRoot()
     ),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
